@@ -1,1 +1,7 @@
 // In Cloudinary signature ivalid
+
+
+//1 Im trying to create a api that accepts images for my projects, 
+       but for some reason it gives the folowing error
+       ..MulterError: Unexpected field\n    at wrappedFileFilter 
+        Solution ++++ i write upload.single('thumbnail') but we do already ... upload.single('lecture')
