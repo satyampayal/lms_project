@@ -5,3 +5,6 @@
        but for some reason it gives the folowing error
        ..MulterError: Unexpected field\n    at wrappedFileFilter 
         Solution ++++ i write upload.single('thumbnail') but we do already ... upload.single('lecture')
+
+
+Q1>> What is PlugIn and Dependency
