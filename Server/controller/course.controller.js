@@ -149,6 +149,7 @@ export const addLectureToCourseById = async (req, res, next) => {
         if (req.file) {
             const result = await v2.uploader.upload(req.file.path, {
                 folder: 'lms',
+                resource_type:'video',
             });
             if (result) {
                 lectureData.public_id = result.public_id;

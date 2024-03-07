@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
+import Footer from './Components/Footer';
 function App() {
   useEffect(()=>{
   //  toast.error('Hello',{
@@ -10,7 +11,10 @@ function App() {
   toast.success('Confirm');
   })
   return (
-    <div className='text-6xl'>This is starting</div>
+    <div >
+      <Footer/>
+
+    </div>
   )
 }
 
