@@ -5,8 +5,9 @@ function Header() {
   return (
     <div className=' bg-slate-700 text-white py-2 flex items-center justify-between  '>
         <div className='  justify-items-start ml-10  '>
-            <a href="#">
-                <img src="..\src\assets\images\QuotesPersonalityImage\einstein.png" width={'50'} alt="icon" />
+            <a href="#" className=' font-extrabold font-mono text-pretty'>
+                {/* <img src="..\src\assets\images\QuotesPersonalityImage\einstein.png" width={'50'} alt="icon" /> */}
+                myLogo
             </a>
         </div>
         <div className='flex justify-center items-center'>
