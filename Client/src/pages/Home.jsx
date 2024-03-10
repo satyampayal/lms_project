@@ -3,7 +3,7 @@ import HomeLayout from "../layouts/HomeLayout";
 function Home() {
     return (
         <HomeLayout>
-            <div className="relative h-[82vh] grid lg:md:grid-cols-2 grid-cols-1 justify-center items-align-center mt-3">
+            <div className="bg-slate-700 text-white relative h-[82vh] grid lg:md:grid-cols-2 grid-cols-1 justify-center items-align-center ">
                 <div className=" relative top-[30%] left-[30%] text-left">
                     <h1 className="text-[40px] text-red-500 text-left">Our Course Home page </h1>
                     <h3>Motivation line </h3>

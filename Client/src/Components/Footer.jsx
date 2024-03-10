@@ -5,11 +5,11 @@ function Footer() {
     const year = newDate.getFullYear();
     return (
         <footer className='  relative  w-full left-0 bottom-0    bg-gray-800
-                             text-white flex flex-col sm:flex-row items-center ' >
-            <section className=' m-4 sm:text-[16px] text-lg '>
+                             text-white flex flex-col sm:flex-row flex-wrap  justify-between items-center ' >
+            <section className=' m-4 sm:text-[16px] text-lg     '>
                 Copyright {year} | All rights reserved
             </section>
-            <section className=' grid grid-cols-4 items-center justify-end
+            <section className=' flex mx-[20px]
                                  sm:justify-center text-2xl   gap-5'>
                 <a href="#" className='hover:scale-[1.3] '>
                     <BsFacebook />
