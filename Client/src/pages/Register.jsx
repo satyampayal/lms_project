@@ -44,6 +44,11 @@ function Register() {
       toast.error('Name should be atleast of 4 characters')
       return;
     }
+    // ToDo Email valdation 
+    
+
+    //Todo Password Constrints
+    
 
     try {
 
