@@ -19,5 +19,5 @@ export const razorpay=new Razorpay({
 
 app.listen(PORT,()=>{
     connectedToDB();
-    console.log('Connected to server')
+    console.log('Connected to server '+ PORT)
 });

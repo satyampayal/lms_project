@@ -6,14 +6,18 @@ import errorMiddleware from "./middleware/error.middleware.js";
 import morgan from "morgan";
 import courseRoutes from './routes/course.routes.js'
 import paymentRoute from './routes/payment.routes.js'
+import { config } from "dotenv";
+config();
 const app=express();
 app.use(morgan('dev'))
 app.use(express.json());
 app.use(cors({
     origin:[process.env.FRONTEND_URL],
     credentials:true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+   
+
 }));
+console.log("Front End Url"+process.env.FRONTEND_URL)
 app.use(cookieParser());
 
 app.use('/ping',(req,res)=>{
