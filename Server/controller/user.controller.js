@@ -41,7 +41,7 @@ const register=async (req,res,next)=>{
                 gravity:'faces',
                 crop:'fill'
              });
-             console.log(result);
+             //console.log(result);
              if(result){
                 user.avatar.public_id=result.public_id;
                 user.avatar.secure_url=result.secure_url;
@@ -58,8 +58,10 @@ const register=async (req,res,next)=>{
     await user.save();
     
     // ToDo: get jwt token in cookie
+    const token=await  user.generateJWTToken();
+
     user.password=undefined;// to ensure password not send in response
-    res.status(200).json({
+     res.status(200).json({
         success:true,
         message:'User Registerd successfully',
         user
@@ -81,9 +83,13 @@ if(!user || !user.comparePassword(password)){
 
 const token=await user.generateJWTToken();
 user.password=undefined;
+// Setting the token in the cookie with name token along with cookieOptions
+res.cookie('token', token, cookieOptions);
+
 
 res.cookie('token',token,cookieOptions);
- res.status(200).json({
+
+ res.status(201).json({
     success:true,
     message:"User Login Successfully",
     user,
