@@ -1,3 +1,4 @@
+import { Children } from "react";
 import HomeLayout from "../layouts/HomeLayout";
 
 function Home() {

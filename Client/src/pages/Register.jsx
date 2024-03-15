@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
-import axiosInstance from '../config/AxiosIns';
 import { BsPersonCircle } from 'react-icons/bs';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
@@ -61,10 +60,10 @@ function Register() {
    formData.append("password",signupDetails.password);
    formData.append("avatar",signupDetails.avatar);
 
-    const response= await dispatch(createAccount(formData));
+    const response=  dispatch(createAccount(formData));
     console.log(response);
     if(response?.payload?.success){
-      return navigate('/');
+      return navigate('/login');
     }
     setSignupDetails({
       email: '',

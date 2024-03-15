@@ -7,4 +7,6 @@
         Solution ++++ i write upload.single('thumbnail') but we do already ... upload.single('lecture')
 
 
+///
+   console.js:213  A non-serializable value was detected in an action, in the path: `payload.headers`.
 Q1>> What is PlugIn and Dependency
