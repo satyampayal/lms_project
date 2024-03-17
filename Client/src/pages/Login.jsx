@@ -38,7 +38,7 @@ function Login() {
         console.log(response);
 
         if (response?.payload?.success) {
-             navigate('/');
+             navigate(to='/');
         }
         setSigninDetails({
             email: '',

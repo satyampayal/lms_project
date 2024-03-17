@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import HomeLayout from './layouts/HomeLayout';
+import Layout from './layouts/Layout';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -17,7 +18,7 @@ function App() {
   // })
   return (
    <Routes>
-    <Route path='/' element={<Home/>} />
+    <Route path='/' element={<Layout/>} />
     <Route path='/register' element={<Register/>}/>
     <Route path='/login' element={<Login/>}/>
    </Routes>

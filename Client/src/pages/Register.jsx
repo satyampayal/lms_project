@@ -60,7 +60,7 @@ function Register() {
    formData.append("password",signupDetails.password);
    formData.append("avatar",signupDetails.avatar);
 
-    const response=  dispatch(createAccount(formData));
+    const response= await  dispatch(createAccount(formData));
     console.log(response);
     if(response?.payload?.success){
       return navigate('/login');
