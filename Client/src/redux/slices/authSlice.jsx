@@ -4,12 +4,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast";
 import axiosInstance from "../../config/AxiosIns";
 
-// for on Refresh not  goed anyWhere
+// for on Refresh not  go anyWhere
 const initialState={
     isLoggedIn:localStorage.getItem('isLoogedIn')||false,
     role:localStorage.getItem('role')  || '',
     data:localStorage.getItem('data') || {},
 }
+// crete account/ user 
 export const createAccount=createAsyncThunk("/auth/signup",async (data)=>{
   try {
 
@@ -29,6 +30,8 @@ export const createAccount=createAsyncThunk("/auth/signup",async (data)=>{
     
   }
 })
+
+// login account
 
 export const loginAccount=createAsyncThunk('/auth/login',async (data)=>{
   try {
@@ -52,18 +55,48 @@ export const loginAccount=createAsyncThunk('/auth/login',async (data)=>{
   }
 
 })
+// logout account
+export const  logout=createAsyncThunk('auth/logout',async ()=>{
+  try {
+
+    const response=axiosInstance.post("user/logout",data);
+    toast.promise(response,{
+        loading:'wait for logout your account',
+        success:(data)=>{
+            return data?.data?.message;
+        },
+        error:'failed to logout your account'
+    })
+    return await response;
+    
+  } catch (error) {
+   // console.log(error);
+    toast.error(error.message);
+    
+  }
+
+})
 const authSlice=createSlice({
     name:'auth',
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
-      
       builder
-      .addCase('login/fulfilled',(state,action)=>{
+      .addCase(loginAccount.fulfilled,(state,action)=>{
         console.log(action)
         localStorage.setItem('data',JSON.stringify(action?.payload?.data));
         localStorage.setItem('isLoggedIn',true);
         localStorage.setItem('role',action?.payload?.data?.user?.role);
+        state.isLoggedIn=true;
+        state.role=action?.payload?.data?.user?.role;
+        state.data=action?.payload?.data;
+      })
+      .addCase(logout.fulfilled,(state,action)=>{
+        console.log(action)
+       localStorage.clear();
+        state.isLoggedIn=false;
+        state.role='';
+        state.data={};
       })
     }
   

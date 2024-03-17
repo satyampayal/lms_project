@@ -62,8 +62,8 @@ function Register() {
 
     const response= await  dispatch(createAccount(formData));
     console.log(response);
-    if(response?.payload?.success){
-      return navigate('/login');
+    if(response?.payload?.data?.success){
+       navigate('/login');
     }
     setSignupDetails({
       email: '',

@@ -37,8 +37,8 @@ function Login() {
         const response = await   dispatch(loginAccount(signinDetails));
         console.log(response);
 
-        if (response?.payload?.success) {
-             navigate(to='/');
+        if (response?.payload?.data?.success) {
+             navigate('/');
         }
         setSigninDetails({
             email: '',
