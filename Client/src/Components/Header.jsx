@@ -1,8 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import authSlice from '../redux/slices/authSlice';
+import authSlice, { logout } from '../redux/slices/authSlice';
+import { useDispatch } from 'react-redux';
 function Header() {
-    const {user}=authSlice();
+    const dispatch=useDispatch();
+    //const {user}=authSlice();
+    const data=JSON.parse(localStorage.getItem('data'));
+    // console.log(data.user.avatar.secure_url);
+    const showOptions=async ()=>{
+    //     const showDetails=document.getElementById('showDetails');
+    //    console.log(showDetails);
+    const response=await  dispatch(logout());
+    console.log(response);
+
+    }
     return (
         <div>
 
@@ -24,11 +35,20 @@ function Header() {
                     {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Course List</a></li> */}
                     {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Contact us</a></li> */}
                     {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">About us</a></li> */}
-              { 
-             
-               <li className=' hover:bg-red-600 hover:scale-110 transition-all ease-linear duration-200 bg-red-500 rounded-[6px] border-[1px solid red] p-[7px] '>
-                    <Link to="/register">Login/Register</Link>
-                </li>}
+                    {
+                        localStorage.getItem('isLoggedIn') ?
+                        <li id='showDetails' onClick={showOptions} className='  w-full h-full rounded-full bg-red-400  hover:scale-[1.2] transition-all duration-200    '>
+                        {/* <img src={localStorage.getItem('data').user.avatar.secure_url} alt="" /> */}
+                        {/* <h1>{data.user}</h1> */}
+                    <img src={data.user.avatar.secure_url}   className='w-[30px] h-[30px]  rounded-full' alt="" />
+                    </li>
+                            :
+                            <li className=' hover:bg-red-600 hover:scale-110 transition-all ease-linear duration-200 bg-red-500 rounded-[6px] border-[1px solid red] p-[7px] '>
+                            <Link to="/login">Login/Register</Link>
+                        </li>
+                    }
+
+
                 </ul>
             </div>
 

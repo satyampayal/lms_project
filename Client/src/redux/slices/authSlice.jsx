@@ -59,7 +59,7 @@ export const loginAccount=createAsyncThunk('/auth/login',async (data)=>{
 export const  logout=createAsyncThunk('auth/logout',async ()=>{
   try {
 
-    const response=axiosInstance.post("user/logout",data);
+    const response=axiosInstance.get("user/logout");
     toast.promise(response,{
         loading:'wait for logout your account',
         success:(data)=>{
@@ -93,7 +93,7 @@ const authSlice=createSlice({
       })
       .addCase(logout.fulfilled,(state,action)=>{
         console.log(action)
-       localStorage.clear();
+        localStorage.clear();
         state.isLoggedIn=false;
         state.role='';
         state.data={};
