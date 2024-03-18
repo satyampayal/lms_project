@@ -11,3 +11,7 @@
    console.js:213  A non-serializable value was detected in an action, in the path: `payload.headers`.
 Q1>> What is PlugIn and Dependency
 
+
+
+//  "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
