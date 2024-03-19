@@ -1,4 +1,3 @@
-import { Children } from "react";
 import HomeLayout from "../layouts/HomeLayout";
 
 function Home() {
@@ -28,6 +27,7 @@ function Home() {
                     <img src="..\src\assets\images\homePageMainImage.png" alt="homeImage" />
                 </div>
             </div>
+          
         </HomeLayout>
     )
 }

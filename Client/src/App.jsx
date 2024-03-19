@@ -6,8 +6,8 @@ import {Route, Routes} from 'react-router-dom'
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import HomeLayout from './layouts/HomeLayout';
 import Layout from './layouts/Layout';
+import CourseList from './pages/Course/CourseList';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -21,6 +21,7 @@ function App() {
     <Route path='/' element={<Layout/>} />
     <Route path='/register' element={<Register/>}/>
     <Route path='/login' element={<Login/>}/>
+    <Route path='/courses' element={<CourseList/>}/>
    </Routes>
   )
 }
