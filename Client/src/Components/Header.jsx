@@ -35,7 +35,7 @@ function Header() {
 
             <div className=' bg-slate-700 text-white py-2 flex items-start justify-between   '>
                 {/* Logo div */}
-                <div className='  justify-items-start ml-10  '>
+                <div className='  justify-items-start ml-10 cursor-pointer  '>
                     <Link to={'/'} className=' font-extrabold font-mono text-pretty'>
                         {/* <img src="..\src\assets\images\QuotesPersonalityImage\einstein.png" width={'50'} alt="icon" /> */}
                         s3

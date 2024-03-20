@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
+import {  useDispatch, useSelector } from 'react-redux'
+
 import HomeLayout from '../../layouts/HomeLayout'
 import { getAllCourses } from '../../redux/slices/courseSlice'
-import {  useDispatch, useSelector } from 'react-redux'
+import Course from '../../Components/Course';
 function CourseList() {
     const dispatch=useDispatch();
    
@@ -15,9 +17,16 @@ function CourseList() {
     },[])
   return (
     <HomeLayout>
-        <div className='min-h[90vh] pt-12 pl-20 flex flex-col text-white bg-gray-700'>
-            <h1 className='text-[40px] text-orange-500'>All Courses</h1>
-            {courseList.length}
+        <div className='min-h[90vh] pt-12 pl-20 grid lg:md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 text-white bg-gray-700'>
+            {courseList.length>0?
+            courseList.map((c)=>(
+                <Course key={c._id} {...c} />
+            )):
+            (
+                <h1>There is no course yet!</h1>
+            )
+        
+            }
         </div>
 
         </HomeLayout>
