@@ -19,3 +19,5 @@ Q1>> What is PlugIn and Dependency
 
 //
 Objects are not valid as a React child (found: object with keys {getCourses}). If you meant to render a collection of children, use an array instead
+
+// browser not run page say-- problem eith this page 

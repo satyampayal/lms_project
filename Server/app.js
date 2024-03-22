@@ -11,12 +11,12 @@ config();
 const app=express();
 app.use(morgan('dev'))
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
     origin:[process.env.FRONTEND_URL],
     credentials:true,
 }));
-console.log("Front End Url"+process.env.FRONTEND_URL)
-app.use(cookieParser());
+console.log("Front End Url "+process.env.FRONTEND_URL)
 
 app.use('/ping',(req,res)=>{
     res.status(200).send('pong');

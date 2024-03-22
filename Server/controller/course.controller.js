@@ -44,6 +44,7 @@ export const getLecturesByCourseId = async (req, res, next) => {
 export const createCourse = async (req, res, next) => {
     try {
         const { title, description, category, createdBy, thumbnail } = req.body;
+        // console.log(req.User)
 
         // if(!title || !description || !category || !createdBy || !thumbnail ){
         // return next(new AppError('All field requireds', 400))

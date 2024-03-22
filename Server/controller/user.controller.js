@@ -58,7 +58,7 @@ const register=async (req,res,next)=>{
     await user.save();
     
     // ToDo: get jwt token in cookie
-    const token=await  user.generateJWTToken();
+    //const token=await  user.generateJWTToken();
 
     user.password=undefined;// to ensure password not send in response
      res.status(200).json({
@@ -82,13 +82,10 @@ if(!user || !user.comparePassword(password)){
 }
 
 const token=await user.generateJWTToken();
+//console.log(token)
 user.password=undefined;
-// Setting the token in the cookie with name token along with cookieOptions
+// Setting the token in the cookie with name token along with cookieOption
 res.cookie('token', token, cookieOptions);
-
-
-res.cookie('token',token,cookieOptions);
-
  res.status(201).json({
     success:true,
     message:"User Login Successfully",
@@ -135,7 +132,7 @@ const forgetPassword=async (req,res)=>{
     return next( new AppError('Email is not registered ',400));
    }
 
-   const resetToken= await user.generatePasswordToken();
+   const resetToken= await User.generatePasswordToken();
    
    await user.save();
 

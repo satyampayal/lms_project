@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { createAccount } from '../redux/slices/authSlice';
 function Register() {
- const navigate=useNavigate();
- const dispatch=useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [signupDetails, setSignupDetails] = useState({
     email: '',
@@ -24,17 +24,17 @@ function Register() {
     })
   }
 
-  function handleImage(e){
+  function handleImage(e) {
     e.preventDefault();
-    const uploadImage=e.target.files[0];
-    if(!uploadImage) return;
+    const uploadImage = e.target.files[0];
+    if (!uploadImage) return;
     setSignupDetails({
       ...signupDetails,
-      avatar:uploadImage
+      avatar: uploadImage
     });
-    const fileReader=new FileReader();
+    const fileReader = new FileReader();
     fileReader.readAsDataURL(uploadImage);
-    fileReader.addEventListener("load",function(){
+    fileReader.addEventListener("load", function () {
       setPreviewImage(this.result)
     })
   }
@@ -49,28 +49,29 @@ function Register() {
       return;
     }
     // ToDo Email valdation 
-    
+
 
     //Todo Password Constrints
-    
 
-   const formData=new FormData();
-   formData.append("fullName",signupDetails.fullName);
-   formData.append("email",signupDetails.email);
-   formData.append("password",signupDetails.password);
-   formData.append("avatar",signupDetails.avatar);
 
-    const response= await  dispatch(createAccount(formData));
+    const formData = new FormData();
+    formData.append("fullName", signupDetails.fullName);
+    formData.append("email", signupDetails.email);
+    formData.append("password", signupDetails.password);
+    formData.append("avatar", signupDetails.avatar);
+
+    const response = await dispatch(createAccount(formData));
     console.log(response);
-    if(response?.payload?.data?.success){
-       navigate('/login');
+    if (response?.payload?.data?.success) {
+      navigate('/login');
     }
     setSignupDetails({
       email: '',
       fullName: '',
       password: '',
-      avatar: ''}
-    
+      avatar: ''
+    }
+
     )
     setPreviewImage('');
 

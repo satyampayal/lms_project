@@ -7,8 +7,9 @@ const router = Router();
 router
    .route('/')
    .get(getAllCourses)
-   .post(isLoggedIn,
-      authorizedRoles('ADMIN'),
+   .post(
+       isLoggedIn,
+       authorizedRoles('ADMIN'),
       upload.single('thumbnail'),
       createCourse)
    .delete(isLoggedIn,

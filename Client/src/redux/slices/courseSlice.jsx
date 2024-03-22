@@ -35,6 +35,25 @@ export const getAllCourses = createAsyncThunk('/course/getAllCourses', async () 
  
 
 })
+
+// Crete Cousres by admin
+export const createCourse=createAsyncThunk('/course/createCourse',async (data)=>{
+ 
+  const response=axiosInstance.post('/courses',data);
+  try {
+    toast.promise(response,{
+      loading:'wait for create Course',
+      success:(data)=>{
+        return data?.payload?.message;
+      },
+      error:'Failed to create Course'
+    })
+    
+  } catch (error) {
+    toast.error(error.message);
+    
+  }
+})
 const courseSlice = createSlice({
   name: 'course',
   initialState,

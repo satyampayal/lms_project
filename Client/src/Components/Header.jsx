@@ -62,8 +62,8 @@ function Header() {
                                 <img src={data.user.avatar.secure_url} className='  cursor-pointer w-[40px] h-[40px]  rounded-full hover:scale-[1.08] transition-all duration-200  ' alt="" />
                             </div>
                             <div id='showDetails' className=' showDetails hidden flex-col justify-center items-center w-[full]   text-center h-[full] rounded-[10px] bg-gray-800'>
-                                <Link className='hover:text-red-400 transition-colors duration-200 ease-in '>courses</Link>
-                                <Link className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
+                                <Link to={'/courses'} className='hover:text-red-400 transition-colors duration-200 ease-in '>courses</Link>
+                                <Link  className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
                                 <Link onClick={logoutHandler} className='hover:text-red-400 transition-colors duration-200 ease-in '>logout</Link>
                             </div>
                         </div>
