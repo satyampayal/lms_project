@@ -13,7 +13,7 @@ function Header() {
     // for ADMIN header 
 
     const { isLoggedIn, role } = useSelector((state) => state.auth);
-    console.log("From header file login" + isLoggedIn + "And role is:" + role);
+   // console.log("From header file login" + isLoggedIn + "And role is:" + role);
     // ADMIN Header End
 
     // show Option of Profile start

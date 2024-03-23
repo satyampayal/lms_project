@@ -13,9 +13,10 @@ const initialState = {
 // get all courses 
 
 export const getAllCourses = createAsyncThunk('/course/getAllCourses', async () => {
-  const response = axiosInstance.get('/courses');
 
   try {
+  const response = axiosInstance.get('/courses');
+
   toast.promise(response,{
     loading:'wait fetching all courses',
     success:(data)=>{
@@ -23,14 +24,13 @@ export const getAllCourses = createAsyncThunk('/course/getAllCourses', async () 
     },
     error: 'failed to get  courses'
 
-  }
+  })
+  return (await response).data.courses;
 
-  )
   } catch (error) {
     toast.error(error.message);
     
   }
-  return (await response).data.courses;
 
  
 
@@ -39,8 +39,16 @@ export const getAllCourses = createAsyncThunk('/course/getAllCourses', async () 
 // Crete Cousres by admin
 export const createCourse=createAsyncThunk('/course/createCourse',async (data)=>{
  
-  const response=axiosInstance.post('/courses',data);
   try {
+    console.log(data)
+    let formData=new FormData();
+    formData.append("title",data.title);
+    formData.append("description",data.description);
+    formData.append("category",data.category);
+    formData.append("createdBy",data.createdBy);
+    formData.append("thumbnail",data.thumbnail);
+  const response=axiosInstance.post('/courses',formData);
+
     toast.promise(response,{
       loading:'wait for create Course',
       success:(data)=>{
@@ -48,11 +56,14 @@ export const createCourse=createAsyncThunk('/course/createCourse',async (data)=>
       },
       error:'Failed to create Course'
     })
+  return (await response).data;
+
     
   } catch (error) {
     toast.error(error.message);
     
   }
+
 })
 const courseSlice = createSlice({
   name: 'course',

@@ -1,6 +1,6 @@
 import AppError from "../utils/appError.js";
 import jwt from 'jsonwebtoken';
- export const isLoggedIn=function(req,res,next){
+ export const isLoggedIn= async function(req,res,next){
     console.log(req.cookies);
     const {token}=req.cookies;
     console.log(token)
@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
         return next(new AppError('UnAuthorised ,You should be Login First',401));
     }
 
-    const tokenDetails=jwt.verify(token,process.env.JWT_SECRET)
+    const tokenDetails= await jwt.verify(token,process.env.JWT_SECRET);
 
     if(!tokenDetails){
         return next(new AppError('UnAuthorised ,Please Login',401));

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import HomeLayout from '../../layouts/HomeLayout'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createCourse } from '../../redux/slices/courseSlice';
 import toast from 'react-hot-toast';
@@ -8,11 +8,15 @@ import toast from 'react-hot-toast';
 function CreateCourse() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    let {data}=useSelector((state)=>state.auth);
+    data=JSON.parse(data);
+    //console.log(data.user.fullName);
+
     const [courseDetails, setCourseDetails] = useState({
         title: '',
         description: '',
         category: '',
-        createdBy: '',
+        createdBy: data.user.fullName,
         thumbnail: '',
 
     });
@@ -53,22 +57,17 @@ function CreateCourse() {
             toast.error("All Field required");
             return;
         }
-        if(courseDetails.title.length>8){
+        if(courseDetails.title.length<8){
             toast.error("Title Length should be 8 Character");
             return;
         }
-        const formData=new FormData();
-        formData.append("title",courseDetails.title);
-        formData.append("description",courseDetails.description);
-        formData.append("category",courseDetails.category);
-        formData.append("createdBy","satyam");
-        formData.append("thumbnail",courseDetails.thumbnail);
+      
         // console.log(courseDetails.thumbnail);
 
-        const response=await dispatch(createCourse(formData));
+        const response=await dispatch(createCourse(courseDetails));
         console.log(response);
     
-        if(response?.message){
+        if(response){
             navigate('/');
         }
         // setCourseDetails({
