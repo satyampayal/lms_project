@@ -5,6 +5,8 @@ import Login from './pages/Login';
 import Layout from './layouts/Layout';
 import CourseList from './pages/Course/CourseList';
 import CreateCourse from './pages/Course/CreateCourse';
+import CourseDescription from './pages/Course/CourseDescription';
+import NotFound from './Components/NotFound';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -19,9 +21,12 @@ function App() {
     <Route path='/register' element={<Register/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/courses' element={<CourseList/>}/>
+    <Route path='/course/description' element={<CourseDescription/>} />
 
     {/* CreateCourse required Auth */}
     <Route path='/createcourse' element={<CreateCourse/>}/>
+
+    <Route  path='*' element={<NotFound/>}/>
    </Routes>
   )
 }

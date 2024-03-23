@@ -86,6 +86,7 @@ const token=await user.generateJWTToken();
 user.password=undefined;
 // Setting the token in the cookie with name token along with cookieOption
 res.cookie('token', token, cookieOptions);
+console.log(req.cookies);
  res.status(201).json({
     success:true,
     message:"User Login Successfully",

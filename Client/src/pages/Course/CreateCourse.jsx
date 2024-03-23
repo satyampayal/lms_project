@@ -3,6 +3,7 @@ import HomeLayout from '../../layouts/HomeLayout'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createCourse } from '../../redux/slices/courseSlice';
+import toast from 'react-hot-toast';
 
 function CreateCourse() {
     const dispatch=useDispatch();
@@ -48,6 +49,14 @@ function CreateCourse() {
     }
     const createCourseHandler=async (e)=>{
         e.preventDefault();
+        if(!courseDetails.title || !courseDetails.description || !courseDetails.category || !courseDetails.thumbnail  ){
+            toast.error("All Field required");
+            return;
+        }
+        if(courseDetails.title.length>8){
+            toast.error("Title Length should be 8 Character");
+            return;
+        }
         const formData=new FormData();
         formData.append("title",courseDetails.title);
         formData.append("description",courseDetails.description);
