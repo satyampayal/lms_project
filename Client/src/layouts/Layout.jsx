@@ -6,7 +6,6 @@ function Layout() {
   return (
     <main>
        <Home/>  
-       <Outlet/>  
     
     </main>
   )

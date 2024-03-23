@@ -7,6 +7,8 @@ import CourseList from './pages/Course/CourseList';
 import CreateCourse from './pages/Course/CreateCourse';
 import CourseDescription from './pages/Course/CourseDescription';
 import NotFound from './Components/NotFound';
+import Denied from './pages/Denied';
+import RequireAuth from './Components/Auth/RequireAuth';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -24,8 +26,10 @@ function App() {
     <Route path='/course/description' element={<CourseDescription/>} />
 
     {/* CreateCourse required Auth */}
-    <Route path='/createcourse' element={<CreateCourse/>}/>
-
+    <Route element={<RequireAuth  allowedRoles={["ADMIN"]}/>}>
+    <Route path='/course/create' element={<CreateCourse/>}/>
+    </Route>
+<Route  path='/denied' element={<Denied/>}/>
     <Route  path='*' element={<NotFound/>}/>
    </Routes>
   )

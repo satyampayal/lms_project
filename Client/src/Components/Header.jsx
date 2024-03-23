@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import authSlice, { logout } from '../redux/slices/authSlice';
-import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 function Header() {
     const dispatch = useDispatch();
-    const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn'));
-    const [toogle,setToogle]=useState(false);
+    const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn') || false );
+    const [toogle, setToogle] = useState(false);
     const data = JSON.parse(localStorage.getItem('data')) || {};
     // data=JSON.stringify(data);
     //  console.log(data.user.avatar.secure_url);
+
+    // for ADMIN header 
+
+    const { isLoggedIn, role } = useSelector((state) => state.auth);
+    console.log("From header file login" + isLoggedIn + "And role is:" + role);
+    // ADMIN Header End
+
+    // show Option of Profile start
     const showOptions = () => {
         const showDetails = document.getElementById('showDetails');
         console.log(showDetails);
@@ -16,14 +24,16 @@ function Header() {
         setToogle(!toogle);
 
     }
-    const showOptions2nd=()=>{
+    const showOptions2nd = () => {
         const showDetails = document.getElementById('showDetails');
         //console.log(showDetails);
         showDetails.classList.replace('hidden', 'flex');
         setToogle(!toogle);
     }
-    // logout Functionalty 
 
+    // show option profile  end
+
+    // logout Functionalty 
     const logoutHandler = async () => {
         const response = await dispatch(logout());
         setIsLogin(false);
@@ -49,21 +59,36 @@ function Header() {
                 {/* Menu field */}
                 <ul className='flex gap-3  mr-5'>
                     <li className='hover:text-red-400 transition-colors duration-200 ease-in '><Link to={'/'}>Home</Link></li>
-                    <li className='hover:text-red-400 transition-colors duration-200 ease-in '><Link to={'/'}>Explore</Link></li>
-                    <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Course List</a></li>
+                    <li className='hover:text-red-400 transition-colors duration-200 ease-in '><Link to={'/courses'}>Explore</Link></li>
+                    {
+                        isLoggedIn && role==='ADMIN'
+                        ?<>
+                            <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/course/create'}>Create course</Link></li> 
+                            <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/course/create'}>Admin DashBoard</Link></li> 
+                             
+                            </>
+                        :
+                        (
+                            <>
+
+                            </>
+                        )
+
+                    }
+                    {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Course List</a></li> */}
                     {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Contact us</a></li> */}
                     {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">About us</a></li> */}
                 </ul>
                 {/* Login/Register/profile button */}
                 {
                     isLogin ?
-                        <div onClick={toogle?showOptions:showOptions2nd} className='  relative right-8    '>
+                        <div onClick={toogle ? showOptions : showOptions2nd} className='  relative right-8    '>
                             <div className='bg-red-400 w-[42px] h-[42px]  rounded-full  '>
                                 <img src={data.user.avatar.secure_url} className='  cursor-pointer w-[40px] h-[40px]  rounded-full hover:scale-[1.08] transition-all duration-200  ' alt="" />
                             </div>
                             <div id='showDetails' className=' showDetails hidden flex-col justify-center items-center w-[full]   text-center h-[full] rounded-[10px] bg-gray-800'>
                                 <Link to={'/courses'} className='hover:text-red-400 transition-colors duration-200 ease-in '>courses</Link>
-                                <Link  className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
+                                <Link className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
                                 <Link onClick={logoutHandler} className='hover:text-red-400 transition-colors duration-200 ease-in '>logout</Link>
                             </div>
                         </div>

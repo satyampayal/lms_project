@@ -6,7 +6,7 @@ import axiosInstance from "../../config/AxiosIns";
 
 // for on Refresh not  go anyWhere
 const initialState = {
-  isLoggedIn: localStorage.getItem('isLoogedIn') || false,
+  isLoggedIn: localStorage.getItem('isLoggedIn') || false,
   role: localStorage.getItem('role') || '',
   data: localStorage.getItem('data') || {},
 }
@@ -89,7 +89,8 @@ const authSlice = createSlice({
         localStorage.setItem('data', JSON.stringify(action?.payload?.data));
         localStorage.setItem('isLoggedIn', true);
         localStorage.setItem('role', action?.payload?.data?.user?.role);
-        state.isLoggedIn = true;
+        state.isLoggedIn =localStorage.getItem('isLoggedIn');
+        console.log(state.isLoggedIn);
         state.role = action?.payload?.data?.user?.role;
         state.data = action?.payload?.data;
       })

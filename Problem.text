@@ -1,4 +1,9 @@
-// In Cloudinary signature ivalid
+ Outlet...
+ outlet should be used in parent route element to render their child route 
+ elemnts. This allows UI to show up  when child routs are redefined. If the 
+ parent route matched exactly, it willrender a child index route or nothing of there is no index route
+
+// In Cloudinary signature invalid
 
 
 //1 Im trying to create a api that accepts images for my projects, 

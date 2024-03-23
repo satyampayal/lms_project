@@ -8,11 +8,11 @@ function CourseDescription() {
     console.log(state)
     const navigate = useNavigate();
 
-    const { role, data } = useSelector((state) => state.auth); // this select user deatils 
-    console.log(data);
+    const { role, data } = useSelector((state) => state.auth); // this select user deatils  from authSlice.jsx we have some state
+    //console.log(isLoggedIn);
     return (
         <HomeLayout>
-            <div className='min-h-[77.5vh] bg-gray-600 p-2'>
+            <div className='min-h-[77.5vh] bg-gray-600 p-2  '>
                 <div className='w-[50%] p-2 m-auto flex flex-col border rounded-2xl  font-bold text-white' >
                     <img src={state.thumbnail.secure_url} className='w-[100%]' alt="" />
                     <p>Course:{state.title}</p>
