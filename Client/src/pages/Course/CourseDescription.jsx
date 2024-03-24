@@ -1,15 +1,27 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
 import HomeLayout from '../../layouts/HomeLayout';
-
+import { deleteCourse } from '../../redux/slices/courseSlice';
 function CourseDescription() {
     const { state } = useLocation();
     console.log(state)
     const navigate = useNavigate();
 
-    const { role, data } = useSelector((state) => state.auth); // this select user deatils  from authSlice.jsx we have some state
+    const { role, data, isLoggedIn } = useSelector((state) => state.auth); // this select user deatils  from authSlice.jsx we have some state
     //console.log(isLoggedIn);
+
+    const dispatch=useDispatch();
+   const deleteCourseHandler=async (e)=>{
+    e.preventDefault();
+
+    const response=await dispatch(deleteCourse());
+    console.log(response);
+    
+    navigate('/');
+
+   }
+
     return (
         <HomeLayout>
             <div className='min-h-[77.5vh] bg-gray-600 p-2  '>
@@ -36,6 +48,26 @@ function CourseDescription() {
                                 >
                                     Subscribed
                                 </button>
+                            )
+                    }
+
+                    {
+                        role === "ADMIN"?
+                            (
+                                <>
+                                    <button
+                                    onClick={deleteCourseHandler}
+                                        className=' mt-2 p-4 rounded-xl bg-red-500 hover:bg-red-600 transition-all duration-200 ease-in'
+
+                                    >
+                                        Delete Course
+                                    </button>
+                                </>
+                            )
+                            :
+                            (
+                                <>
+                                </>
                             )
                     }
                 </div>

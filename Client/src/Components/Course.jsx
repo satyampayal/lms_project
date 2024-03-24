@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 function Course(c) {
   const navigate=useNavigate();
+ // console.log(c);
+  
   return (
-    <div onClick={()=> navigate('/course/description', {state:{...c}})}
+    <div onClick={()=> navigate(`/course/description/${c?._id}`, {state:{...c}})}
     className=' border-[1px] rounded-lg bg-gray-600 w-[250px] h-full
       m-1 text-center font-bold cursor-default
      flex flex-col justify-center place-content-center 

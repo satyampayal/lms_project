@@ -1,10 +1,7 @@
-//isLoggedIn state is dynamic so it store in localStorage
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast";
-
 import axiosInstance from "../../config/AxiosIns";
 
-// for on Refresh not  go anyWhere
 const initialState = {
      courseList:[]
 }
@@ -31,8 +28,6 @@ export const getAllCourses = createAsyncThunk('/course/getAllCourses', async () 
     toast.error(error.message);
     
   }
-
- 
 
 })
 
@@ -65,6 +60,36 @@ export const createCourse=createAsyncThunk('/course/createCourse',async (data)=>
   }
 
 })
+
+// Delete course 
+
+export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () => {
+
+
+
+  try {
+    
+  const response = axiosInstance.delete(`/courses/${courseId}`);
+
+  
+
+  toast.promise(response,{
+    loading:'wait for delete course',
+    success:(data)=>{
+       return data?.data?.message;
+    },
+    error: 'failed to delete  courses'
+
+  })
+  return (await response);
+
+  } catch (error) {
+    toast.error(error.message);
+    
+  }
+
+})
+
 const courseSlice = createSlice({
   name: 'course',
   initialState,

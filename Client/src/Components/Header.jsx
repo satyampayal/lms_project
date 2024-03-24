@@ -4,7 +4,7 @@ import { logout } from '../redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 function Header() {
     const dispatch = useDispatch();
-    const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn') || false );
+    const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn'));
     const [toogle, setToogle] = useState(false);
     const data = JSON.parse(localStorage.getItem('data')) || {};
     // data=JSON.stringify(data);
@@ -84,7 +84,7 @@ function Header() {
                     isLogin ?
                         <div onClick={toogle ? showOptions : showOptions2nd} className='  relative right-8    '>
                             <div className='bg-red-400 w-[42px] h-[42px]  rounded-full  '>
-                                <img src={data.user.avatar.secure_url} className='  cursor-pointer w-[40px] h-[40px]  rounded-full hover:scale-[1.08] transition-all duration-200  ' alt="" />
+                                <img src={data?.user?.avatar?.secure_url} className='  cursor-pointer w-[40px] h-[40px]  rounded-full hover:scale-[1.08] transition-all duration-200  ' alt="" />
                             </div>
                             <div id='showDetails' className=' showDetails hidden flex-col justify-center items-center w-[full]   text-center h-[full] rounded-[10px] bg-gray-800'>
                                 <Link to={'/courses'} className='hover:text-red-400 transition-colors duration-200 ease-in '>courses</Link>

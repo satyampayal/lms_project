@@ -12,7 +12,8 @@ router
       // authorizedRoles('ADMIN'),
       upload.single('thumbnail'),
       createCourse)
-   .delete(isLoggedIn,
+   .delete(
+      isLoggedIn,
       authorizedRoles('ADMIN'),
       deleteLectureByCourseIdAndLectureId);
 
