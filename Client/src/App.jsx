@@ -12,6 +12,7 @@ import RequireAuth from './Components/Auth/RequireAuth';
 import Profile from './pages/User/Profile';
 import ChangePassword from './pages/User/ChangePassword'
 import { useSelector } from 'react-redux';
+import EditProfile from './pages/User/EditProfile';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -43,6 +44,12 @@ function App() {
        {
         isLoggedIn?
         <Route path='/me/change-password' element={<ChangePassword/>} /> 
+        :
+      <Route path='/login' element={<Login />} />
+      }
+        {
+        isLoggedIn?
+        <Route path='/me/edit-profile' element={<EditProfile/>} /> 
         :
       <Route path='/login' element={<Login />} />
       }

@@ -8,15 +8,15 @@ import toast from 'react-hot-toast';
 function CreateCourse() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    let {data}=useSelector((state)=>state.auth);
-    data=JSON.parse(data);
+    let {data}=useSelector((state)=>state?.auth) ;
+    // console.log(data);
     //console.log(data.user.fullName);
 
     const [courseDetails, setCourseDetails] = useState({
         title: '',
         description: '',
         category: '',
-        createdBy: data.user.fullName,
+        createdBy: data?.user?.fullName || "s3",
         thumbnail: '',
 
     });
