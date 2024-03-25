@@ -6,7 +6,7 @@ import HomeLayout from "../layouts/HomeLayout";
 function Home() {
     return (
         <HomeLayout>
-            <div className="bg-slate-700 text-white h-[88vh] flex  justify-between items-center  ">
+            <div className="bg-slate-700 text-white h-[88vh] flex  justify-between items-center select-none  ">
                 <div className="flex flex-col justify-between w-[50vw] mx-[20px]">
                   <div className="flex gap-4">
                   <h3 className="font-bold lg:md:text-[30px] text-[19px]"> Upskilling made  </h3>

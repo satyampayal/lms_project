@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { logout } from '../redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 function Header() {
     const dispatch = useDispatch();
+    const navigate=useNavigate();
     const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn'));
     const [toogle, setToogle] = useState(false);
     const data = JSON.parse(localStorage.getItem('data')) || {};
@@ -37,7 +39,9 @@ function Header() {
     const logoutHandler = async () => {
         const response = await dispatch(logout());
         setIsLogin(false);
-        console.log(response);
+        navigate('/');
+        
+        // console.log(response);
     }
     return (
         <div>
@@ -64,7 +68,7 @@ function Header() {
                         isLoggedIn && role==='ADMIN'
                         ?<>
                             <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/course/create'}>Create course</Link></li> 
-                            <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/course/create'}>Admin DashBoard</Link></li> 
+                            <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/admin/dashboard'}>Admin DashBoard</Link></li> 
                              
                             </>
                         :
@@ -88,7 +92,7 @@ function Header() {
                             </div>
                             <div id='showDetails' className=' showDetails hidden flex-col justify-center items-center w-[full]   text-center h-[full] rounded-[10px] bg-gray-800'>
                                 <Link to={'/courses'} className='hover:text-red-400 transition-colors duration-200 ease-in '>courses</Link>
-                                <Link className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
+                                <Link to={'/me'} className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
                                 <Link onClick={logoutHandler} className='hover:text-red-400 transition-colors duration-200 ease-in '>logout</Link>
                             </div>
                         </div>

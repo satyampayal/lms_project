@@ -1,5 +1,5 @@
 /* eslint-disable simple-import-sort/imports */
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Layout from './layouts/Layout';
@@ -9,6 +9,8 @@ import CourseDescription from './pages/Course/CourseDescription';
 import NotFound from './Components/NotFound';
 import Denied from './pages/Denied';
 import RequireAuth from './Components/Auth/RequireAuth';
+import Profile from './pages/User/Profile';
+import { useSelector } from 'react-redux';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -17,21 +19,30 @@ function App() {
   // //  })
   // toast.success('Confirm');
   // })
-  return (
-   <Routes>
-    <Route path='/' element={<Layout/>} />
-    <Route path='/register' element={<Register/>}/>
-    <Route path='/login' element={<Login/>}/>
-    <Route path='/courses' element={<CourseList/>}/>
-    <Route path='/course/description/:courseId' element={<CourseDescription/>} />
 
-    {/* CreateCourse required Auth */}
-    <Route element={<RequireAuth  allowedRoles={["ADMIN"]}/>}>
-    <Route path='course/create/' element={<CreateCourse/>}/>
-    </Route>
-<Route  path='/denied' element={<Denied/>}/>
-    <Route  path='*' element={<NotFound/>}/>
-   </Routes>
+  const {isLoggedIn}=useSelector((state)=>state.auth);
+  return (
+    <Routes>
+      <Route path='/' element={<Layout />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/courses' element={<CourseList />} />
+      <Route path='/course/description/:courseId' element={<CourseDescription />} />
+
+      {/* CreateCourse required Auth */}
+      <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
+        <Route path='course/create/' element={<CreateCourse />} />
+      </Route>
+      {
+        isLoggedIn?
+        <Route path='/me' element={<Profile/>} /> 
+        :
+      <Route path='/login' element={<Login />} />
+      }
+      
+      <Route path='/denied' element={<Denied />} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
   )
 }
 
