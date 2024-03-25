@@ -77,8 +77,13 @@ const login=async (req,res,next)=>{
 }
 
 const user=await User.findOne({email}).select('+password');
-if(!user || !user.comparePassword(password)){
+if(!user ){
     return next(new AppError('Email or passowrd do not match',400));
+}
+const checkPassword=await user.comparePassword(password)
+console.log(checkPassword);
+if( checkPassword===false){
+    return next(new AppError("Password is wrong or Email not match",400));
 }
 
 const token=await user.generateJWTToken();
@@ -86,7 +91,7 @@ const token=await user.generateJWTToken();
 user.password=undefined;
 // Setting the token in the cookie with name token along with cookieOption
 res.cookie('token', token, cookieOptions);
-console.log(req.cookies);
+//console.log(c);
  res.status(201).json({
     success:true,
     message:"User Login Successfully",
@@ -201,7 +206,7 @@ const changePassword=async (req,res,next)=>{
             new AppError('All fieds required ',400)
         )
      }
-     const user=await User.findById(id).select('+password');
+     const user=await User.findById(req.user.id).select('+password');
      
      if(!user){
         return next(
@@ -209,7 +214,7 @@ const changePassword=async (req,res,next)=>{
         )
      }
 
-     const isPasswordValid=await user.comparePassword(password);
+     const isPasswordValid=await user.comparePassword(oldPassword);
     
      if(!isPasswordValid){
         return next(
@@ -219,7 +224,7 @@ const changePassword=async (req,res,next)=>{
      user.password=newPassword;
      await user.save();
      user.password=undefined;
-     res.satatus(200).json({
+     res.status(200).json({
         success:true,
         message:'password changed SuccessFuly'
      })

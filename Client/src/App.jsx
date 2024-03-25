@@ -10,6 +10,7 @@ import NotFound from './Components/NotFound';
 import Denied from './pages/Denied';
 import RequireAuth from './Components/Auth/RequireAuth';
 import Profile from './pages/User/Profile';
+import ChangePassword from './pages/User/ChangePassword'
 import { useSelector } from 'react-redux';
 function App() {
   // useEffect(()=>{
@@ -36,6 +37,12 @@ function App() {
       {
         isLoggedIn?
         <Route path='/me' element={<Profile/>} /> 
+        :
+      <Route path='/login' element={<Login />} />
+      }
+       {
+        isLoggedIn?
+        <Route path='/me/change-password' element={<ChangePassword/>} /> 
         :
       <Route path='/login' element={<Login />} />
       }

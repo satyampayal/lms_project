@@ -77,6 +77,26 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 
 })
 
+export const changePassword=createAsyncThunk('/user/changePassword',async (data)=>{
+  try {
+    const response =axiosInstance.post('/user/change-password',data);
+    toast.promise(response,{
+      loading:'processing start...',
+      success:(data)=>{
+        return data?.data?.message;
+      },
+      error:'failed to change password'
+    })
+    return await response;
+
+    
+  } catch (error) {
+    toast.error(error.message);
+    
+  }
+
+})
+
 
 const authSlice = createSlice({
   name: 'auth',

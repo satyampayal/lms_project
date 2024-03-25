@@ -20,8 +20,8 @@ function Profile() {
                     Email: <h1 className='text-red-300 ml-1 filter blur-sm hover:blur-none  cursor-not-allowed '>{data.email}</h1>
                     </div>
                     <div className='flex lg:md:flex-row sm:flex-row flex-col justify-between  gap-1 w-full   '>
-                        <button className='p-2 lg:md:w-[50vw] sm:w-[40vw] w-[30vw] rounded-md bg-red-400 hover:bg-red-500 transition-all ease-in duration-200 '>Change Password</button>
-                        <button className='p-2lg:md:w-[50vw] sm:w-[40vw] w-[30vw] rounded-md bg-blue-400 hover:bg-blue-500 transition-all ease-in duration-200 '>Edit  Profile</button>
+                        <button id='changePassword' className='p-2 lg:md:w-[50vw] sm:w-[40vw] w-[30vw] rounded-md bg-red-400 hover:bg-red-500 transition-all ease-in duration-200 '> <Link to={'/me/change-password'}>Change Password</Link>   </button>
+                    <button id='edit' className='p-2lg:md:w-[50vw] sm:w-[40vw] w-[30vw] rounded-md bg-blue-400 hover:bg-blue-500 transition-all ease-in duration-200 '>Edit  Profile</button>
                     </div>
                 </div>
             </div>

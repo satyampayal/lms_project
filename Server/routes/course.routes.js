@@ -8,8 +8,8 @@ router
    .route('/')
    .get(getAllCourses)
    .post(
-    //   isLoggedIn,
-      // authorizedRoles('ADMIN'),
+       isLoggedIn,
+       authorizedRoles('ADMIN'),
       upload.single('thumbnail'),
       createCourse)
    .delete(

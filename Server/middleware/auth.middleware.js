@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
  export const isLoggedIn= async function(req,res,next){
     // console.log(req.cookies);
     const {token}=req.cookies;
-    // console.log(token)
+     console.log("IsLoggedin Token"+token)
     if(!token){
         return next(new AppError('UnAuthorised ,You should be Login First',401));
     }
