@@ -1,9 +1,9 @@
 import AppError from "../utils/appError.js";
 import jwt from 'jsonwebtoken';
  export const isLoggedIn= async function(req,res,next){
-    console.log(req.cookies);
+    // console.log(req.cookies);
     const {token}=req.cookies;
-    console.log(token)
+    // console.log(token)
     if(!token){
         return next(new AppError('UnAuthorised ,You should be Login First',401));
     }
@@ -19,7 +19,7 @@ import jwt from 'jsonwebtoken';
 }
 
 export  const authorizedRoles=(...roles)=>(req,res,next)=>{
-    console.log(req.user);
+    // console.log(req.user);
    const currentRole=req.user.role;
    if(!roles.includes(currentRole)){
     return next(new AppError('You do not permission to access this route',403))

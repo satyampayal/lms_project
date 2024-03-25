@@ -57,8 +57,8 @@ function CreateCourse() {
             toast.error("All Field required");
             return;
         }
-        if(courseDetails.title.length<8){
-            toast.error("Title Length should be 8 Character");
+        if(courseDetails.title.length<8 || courseDetails.description.length<8){
+            toast.error("Title and Description Length should be 8 Character");
             return;
         }
       

@@ -17,7 +17,7 @@ function CourseList() {
     },[])
   return (
     <HomeLayout>
-        <div className='min-h[90vh] pt-12 pl-20 grid lg:md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 text-white bg-gray-700'>
+        <div className='min-h[90vh]  pt-12 pl-20 grid lg:md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 text-white bg-gray-700'>
             {courseList.length>0?
             courseList.map((c)=>(
                 <Course key={c._id} {...c} />

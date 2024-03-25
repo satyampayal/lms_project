@@ -12,13 +12,17 @@ function CourseDescription() {
     //console.log(isLoggedIn);
 
     const dispatch=useDispatch();
+    // const {courseId}=useParams();
+    // console.log("From Course Description "+courseId);
+
+    // delet course Handler
    const deleteCourseHandler=async (e)=>{
     e.preventDefault();
 
     const response=await dispatch(deleteCourse());
     console.log(response);
     
-    navigate('/');
+     navigate('/courses');
 
    }
 
