@@ -97,6 +97,25 @@ export const changePassword=createAsyncThunk('/user/changePassword',async (data)
 
 })
 
+export const  updateProfile=createAsyncThunk('/user/profile/update',async (data)=>{
+    
+  try {
+    
+    const response=axiosInstance.post('/user/update',data)
+    toast.promise(response,{
+      loading:'wait for update profile',
+      success:(data)=>{
+        return data?.data?.message;
+      },
+      error:'Failed to update profile,try again'
+    })
+    return (await response).user;
+  } catch (error) {
+    toast.error(error?.message);
+    
+  }
+})
+
 
 const authSlice = createSlice({
   name: 'auth',

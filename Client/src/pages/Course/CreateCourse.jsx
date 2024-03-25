@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import HomeLayout from '../../layouts/HomeLayout'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { createCourse } from '../../redux/slices/courseSlice';
 import toast from 'react-hot-toast';
 
@@ -9,8 +9,9 @@ function CreateCourse() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
     let {data}=useSelector((state)=>state?.auth) ;
+    data=JSON.parse(data);
+    //  console.log( data?.user?.fullName );
     // console.log(data);
-    //console.log(data.user.fullName);
 
     const [courseDetails, setCourseDetails] = useState({
         title: '',

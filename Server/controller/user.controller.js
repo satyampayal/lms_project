@@ -234,7 +234,7 @@ const updateUser=async (req,res,next)=>{
     const {fullName}=req.body;
     const {id}=req.user;
 
-    const user=await User.findById({id});
+    const user=await User.findById(id);
     if(!user){
         return next(
             new AppError('User not exist ',400)

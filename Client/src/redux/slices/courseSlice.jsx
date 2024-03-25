@@ -70,12 +70,8 @@ export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () =>
   try {
      const url=location.href.split('/');
      const courseId=url.splice(5);
-     //console.log(url.splice(5));
-
-    
+     //console.log(url.splice(5));   
   const response = axiosInstance.delete(`/courses/${courseId}`);
-
-  
 
   toast.promise(response,{
     loading:'wait for delete course',
@@ -93,6 +89,7 @@ export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () =>
   }
 
 })
+
 
 const courseSlice = createSlice({
   name: 'course',
