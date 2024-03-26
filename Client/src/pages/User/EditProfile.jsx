@@ -8,9 +8,12 @@ import { updateProfile } from '../../redux/slices/authSlice';
 function EditProfile() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    let { data } = useSelector((state) => state.auth);
-    data = JSON.parse(data);
+    // let { data } = useSelector((state) => state.auth);
+   // data = JSON.parse(data);
     // console.log(data);
+    let data=localStorage.getItem('data');
+      data = JSON.parse(data);
+    console.log(data);
     const [editDetails, setEditDetails] = useState({
         fullName: '',
         avatar: ''
@@ -43,7 +46,7 @@ function EditProfile() {
 
 
     }
-    const editSubmitHandler= async(e)=>{
+    const editSubmitHandler= async (e)=>{
         e.preventDefault();
         if(editDetails.fullName==='' || editDetails.avatar==='' ){
             return toast.error('please upadte avatar or name');
@@ -54,6 +57,13 @@ function EditProfile() {
         formdata.append('avatar',editDetails.avatar);
         const response=await  dispatch(updateProfile(formdata));
         console.log(response);
+        if(response){
+            navigate('/me');
+            setEditDetails({
+                fullName: '',
+                avatar: ''
+            })
+        }
         
     }
 
@@ -62,7 +72,7 @@ function EditProfile() {
             <div className='bg-gray-600 flex justify-center items-center min-h-[81vh] select-none '>
                 <div >
                     <form onSubmit={editSubmitHandler}
-                    className=' p-2 w-[40vw] min-h-[30vh] rounded-lg bg-gray-50 
+                    className=' p-2 lg:md:w-[40vw] w-[80vw] min-h-[30vh] rounded-lg bg-gray-50 
                     flex flex-col justify-center items-center gap-5'  >
                         <label htmlFor="upload_avatar" className='cursor-pointer'>
                             {
@@ -86,10 +96,10 @@ function EditProfile() {
                             accept='.jpeg,.png,.svg,.jpg'
                             onChange={imageHandle}
                         />
-                        <div className=''>
-                            <label htmlFor="" className='text-green-400 font-bold '>Full Name:</label>
+                        <div className='  '>
+                            <label htmlFor="" className='text-green-400 font-bold lg:md:text-[20px] sm:text-[18px]  text-[14px] '>Full Name:</label>
                             <input
-                                className='p-2 rounded-md text-start bg-blue-100'
+                                className='p-2 rounded-md text-start bg-blue-100 lg:md:w-[25vw] sm:w-[40vw]  w-[30vw] '
                                 type="text"
                                 placeholder='Enter Full name please...'
                                 value={editDetails.fullName}

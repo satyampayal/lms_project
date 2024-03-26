@@ -8,13 +8,16 @@ function Header() {
     const navigate=useNavigate();
     const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn'));
     const [toogle, setToogle] = useState(false);
-    const data = JSON.parse(localStorage.getItem('data')) || {};
-    // data=JSON.stringify(data);
-    //  console.log(data.user.avatar.secure_url);
+    let data =localStorage.getItem('data') ;
+     data=JSON.parse(data);
+     //console.log(data.user.avatar.secure_url);
+     console.log(data);
 
     // for ADMIN header 
 
-    const { isLoggedIn, role } = useSelector((state) => state.auth);
+    let { isLoggedIn, role } = useSelector((state) => state.auth);
+    // console.log(data)
+
    // console.log("From header file login" + isLoggedIn + "And role is:" + role);
     // ADMIN Header End
 

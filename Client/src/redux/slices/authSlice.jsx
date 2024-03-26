@@ -109,7 +109,7 @@ export const  updateProfile=createAsyncThunk('/user/profile/update',async (data)
       },
       error:'Failed to update profile,try again'
     })
-    return (await response).user;
+    return await response;
   } catch (error) {
     toast.error(error?.message);
     
@@ -139,6 +139,13 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.role = '';
         state.data = {};
+      })
+      .addCase(updateProfile.fulfilled,(state,action)=>{
+        console.log(action);
+        localStorage.removeItem('data');
+        localStorage.setItem('data',JSON.stringify(action?.payload?.data));
+        state.data=action?.payload?.data;
+        console.log(state.data);
       })
   }
 

@@ -11,7 +11,7 @@ function CreateCourse() {
     let {data}=useSelector((state)=>state?.auth) ;
     data=JSON.parse(data);
     //  console.log( data?.user?.fullName );
-    // console.log(data);
+     console.log(data);
 
     const [courseDetails, setCourseDetails] = useState({
         title: '',
@@ -71,13 +71,13 @@ function CreateCourse() {
         if(response){
             navigate('/');
         }
-        // setCourseDetails({
-        //     title: '',
-        //     description: '',
-        //     category: '',
-        //     createdBy: '',
-        //     thumbnail: '',
-        // })
+        setCourseDetails({
+            title: '',
+            description: '',
+            category: '',
+            createdBy: '',
+            thumbnail: '',
+        })
     }
 
     return (

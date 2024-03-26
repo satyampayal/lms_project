@@ -81,13 +81,37 @@ export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () =>
     error: 'failed to delete  courses'
 
   })
-  return (await response);
+  return (await response).data;
 
   } catch (error) {
     toast.error(error.message);
     
   }
 
+});
+
+// Add lecture 
+
+export const addLecture=createAsyncThunk('/course/add/lecture',async ()=>{
+  try {
+    const url=location.href.split('/');
+    const courseId=url.splice(5);
+    const promise=axiosInstance.post(`/courses/${courseId}`,data);
+
+    toast.promise(response,{
+      loading:'wait for delete course',
+      success:(data)=>{
+         return data?.data?.message;
+      },
+      error: 'failed to delete  courses'
+  
+    })
+    return (await response).data;
+    
+  } catch (error) {
+    toast.error(error.message);
+    
+  }
 })
 
 
