@@ -5,10 +5,10 @@ import HomeLayout from '../../layouts/HomeLayout';
 import { deleteCourse } from '../../redux/slices/courseSlice';
 function CourseDescription() {
     const { state } = useLocation();
-    console.log(state)
+    console.log(state);// state have course related i capture
     const navigate = useNavigate();
 
-    const { role, data, isLoggedIn } = useSelector((state) => state.auth); // this select user deatils  from authSlice.jsx we have some state
+    const { role, data, } = useSelector((state) => state.auth); // this select user deatils  from authSlice.jsx we have some state
     //console.log(isLoggedIn);
 
     const dispatch=useDispatch();
@@ -39,7 +39,7 @@ function CourseDescription() {
                         role === "ADMIN" || data?.subscription?.status === 'active' ?
                             (
                                 <button
-                                    onClick={() => navigate('/course/displaylectures', { state: { ...state } })}
+                                    onClick={() => navigate(`/course/lectures/${state?._id}`, { state: { ...state } })}
                                     className='  p-4 rounded-xl bg-green-500 hover:bg-green-600 transition-all duration-200 ease-in'>
                                     Watch lectures
                                 </button>

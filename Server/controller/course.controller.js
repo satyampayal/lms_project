@@ -20,17 +20,18 @@ export const getLecturesByCourseId = async (req, res, next) => {
 
     try {
         const { courseId } = req.params;
-        //   console.log(courseId);
+           console.log(courseId);
         const course = await Course.findById(courseId);
         if (!course) {
             return (
                 new AppError('Invalid Course Id', 400)
             )
         }
+        // console.log(course.lectures);
         res.status(200).json({
             success: true,
             message: 'Course lectures fetched successfully ',
-            lectures: Course.lectures,
+            lectures: course.lectures,
         })
 
     } catch (e) {

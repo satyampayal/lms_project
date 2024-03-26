@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 function Profile() {
     let data =localStorage.getItem('data') ;
      data=JSON.parse(data);
-    //  console.log(data);
+      console.log(data);
     return (
         <HomeLayout>
             <div className='bg-gray-600  text-white flex justify-center items-center min-h-[81.5vh] select-none  '>

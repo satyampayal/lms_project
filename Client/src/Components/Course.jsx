@@ -6,7 +6,7 @@ function Course(c) {
  // console.log(c);
   
   return (
-    <div onClick={()=> navigate(`/course/description/${c?._id}`, {state:{...c}})}
+    <div onClick={()=> navigate(`/course/${c?._id}`, {state:{...c}})}
     className=' border-[1px] rounded-lg bg-gray-600 w-[250px] h-full
        text-center font-bold cursor-default
      flex flex-col justify-center place-content-center 

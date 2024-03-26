@@ -141,7 +141,7 @@ const authSlice = createSlice({
         state.data = {};
       })
       .addCase(updateProfile.fulfilled,(state,action)=>{
-        console.log(action);
+        console.log("update profile"+action);
         localStorage.removeItem('data');
         localStorage.setItem('data',JSON.stringify(action?.payload?.data));
         state.data=action?.payload?.data;

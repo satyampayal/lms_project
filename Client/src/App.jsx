@@ -13,6 +13,7 @@ import Profile from './pages/User/Profile';
 import ChangePassword from './pages/User/ChangePassword'
 import { useSelector } from 'react-redux';
 import EditProfile from './pages/User/EditProfile';
+import DisplayLectures from './pages/Course/DisplayLectures';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -29,7 +30,7 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path='/courses' element={<CourseList />} />
-      <Route path='/course/description/:courseId' element={<CourseDescription />} />
+      <Route path='/course/:courseId' element={<CourseDescription />} />
 
       {/* CreateCourse required Auth */}
       <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
@@ -50,6 +51,14 @@ function App() {
         {
         isLoggedIn?
         <Route path='/me/edit-profile' element={<EditProfile/>} /> 
+        :
+      <Route path='/login' element={<Login />} />
+      }
+
+      {/* Display Lecture Route */}
+      {
+        isLoggedIn?
+        <Route path='/course/lectures/:courseId' element={<DisplayLectures/>} /> 
         :
       <Route path='/login' element={<Login />} />
       }

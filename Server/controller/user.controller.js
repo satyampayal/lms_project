@@ -265,7 +265,7 @@ const updateUser=async (req,res,next)=>{
          }
     }
     await user.save();
-    // console.log(user);
+     console.log(user);
     res.status(200).json({
         success:true,
         message:'Update Profile Successfully',

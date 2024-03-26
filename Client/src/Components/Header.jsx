@@ -11,7 +11,7 @@ function Header() {
     let data =localStorage.getItem('data') ;
      data=JSON.parse(data);
      //console.log(data.user.avatar.secure_url);
-     console.log(data);
+    //  console.log(data);
 
     // for ADMIN header 
 

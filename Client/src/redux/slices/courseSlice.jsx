@@ -70,7 +70,7 @@ export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () =>
   try {
      const url=location.href.split('/');
      const courseId=url.splice(5);
-     //console.log(url.splice(5));   
+     console.log(url.splice(5));   
   const response = axiosInstance.delete(`/courses/${courseId}`);
 
   toast.promise(response,{
@@ -90,12 +90,35 @@ export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () =>
 
 });
 
+// get all lectures of particular course
+
+export const getLectures=createAsyncThunk('/course/get/lecture',async ()=>{
+  try {
+    const url=location.href.split('/');
+    const courseId=url.splice(5);
+    console.log(courseId)
+    const response=axiosInstance.get(`/courses/${courseId}`);
+    toast.promise(response,{
+      loading:'wait for get course',
+      success:(data)=>{
+         return data?.data?.message;
+      },
+      error: 'failed to get  courses'
+  
+    })
+    return (await response).data;
+  } catch (error) {
+    toast.error(error.message);
+    
+  }
+})
+
 // Add lecture 
 
 export const addLecture=createAsyncThunk('/course/add/lecture',async ()=>{
   try {
     const url=location.href.split('/');
-    const courseId=url.splice(5);
+    const courseId=url.splice(4);
     const promise=axiosInstance.post(`/courses/${courseId}`,data);
 
     toast.promise(response,{
