@@ -69,8 +69,8 @@ export const deleteCourse = createAsyncThunk('/course/deleteCourse', async () =>
 
   try {
      const url=location.href.split('/');
-     const courseId=url.splice(5);
-     console.log(url.splice(5));   
+     const courseId=url.splice(4);
+     console.log(courseId);   
   const response = axiosInstance.delete(`/courses/${courseId}`);
 
   toast.promise(response,{
@@ -99,11 +99,11 @@ export const getLectures=createAsyncThunk('/course/get/lecture',async ()=>{
     console.log(courseId)
     const response=axiosInstance.get(`/courses/${courseId}`);
     toast.promise(response,{
-      loading:'wait for get course',
+      loading:'wait for get lecture',
       success:(data)=>{
          return data?.data?.message;
       },
-      error: 'failed to get  courses'
+      error: 'failed to get  lecture'
   
     })
     return (await response).data;
@@ -115,18 +115,23 @@ export const getLectures=createAsyncThunk('/course/get/lecture',async ()=>{
 
 // Add lecture 
 
-export const addLecture=createAsyncThunk('/course/add/lecture',async ()=>{
+export const addLecture=createAsyncThunk('/course/add/lecture',async (data)=>{
   try {
     const url=location.href.split('/');
-    const courseId=url.splice(4);
-    const promise=axiosInstance.post(`/courses/${courseId}`,data);
+    const courseId=url.splice(5);
+
+    let formData=new FormData();
+    formData.append('title',data.title);
+    formData.append('description',data.description);
+    formData.append('lecture',data.lecture);
+    const response=axiosInstance.post(`/courses/${courseId}`,formData);
 
     toast.promise(response,{
-      loading:'wait for delete course',
+      loading:'wait for Add lecture',
       success:(data)=>{
          return data?.data?.message;
       },
-      error: 'failed to delete  courses'
+      error: 'failed to Add  lecture'
   
     })
     return (await response).data;

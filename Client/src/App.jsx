@@ -14,6 +14,7 @@ import ChangePassword from './pages/User/ChangePassword'
 import { useSelector } from 'react-redux';
 import EditProfile from './pages/User/EditProfile';
 import DisplayLectures from './pages/Course/DisplayLectures';
+import AddLecture from './pages/Course/AddLecture';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -59,6 +60,13 @@ function App() {
       {
         isLoggedIn?
         <Route path='/course/lectures/:courseId' element={<DisplayLectures/>} /> 
+        :
+      <Route path='/login' element={<Login />} />
+      }
+        {/* Add Lecture Route */}
+        {
+        isLoggedIn?
+        <Route path='/course/addLecture/:courseId' element={<AddLecture/>} /> 
         :
       <Route path='/login' element={<Login />} />
       }
