@@ -184,7 +184,10 @@ export const addLectureToCourseById = async (req, res, next) => {
 
 export const deleteLectureByCourseIdAndLectureId = async (req, res, next) => {
     const { courseId, lectureId } = req.query;
-    console.log(lectureId.toString());
+    console.log(req.query);
+    console.log(courseId);
+    console.log("lecture Id :"+lectureId);
+    // console.log(lectureId.toString());
     try {
         if (!courseId) {
             return next(new AppError('Course Id Is required ', 404))

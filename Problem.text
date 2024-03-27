@@ -44,3 +44,8 @@ I need to get CourseId from Url without Using UseParms
 ...............Very good we have solution use
     const url=location.href.split('/');
      const courseId=url.splice(5);
+
+
+//////// Problem in lecture delete 
+   problem face like .......how set query as courseId and lectureId 
+             because we need to in backend 

@@ -30,11 +30,11 @@ function CourseDescription() {
         <HomeLayout>
             <div className='min-h-[77.5vh] bg-gray-600 p-2  '>
                 <div className='w-[50%] p-2 m-auto flex flex-col border rounded-2xl  font-bold text-white' >
-                    <img src={state.thumbnail.secure_url} className='w-[100%]' alt="" />
-                    <p>Course:{state.title}</p>
-                    <p>Category:{state.category}</p>
-                    <p>Instruct By:{state.createdBy}</p>
-                    <p>Description Of Course : <br />{state.description}</p>
+                    <img src={state?.thumbnail.secure_url} className='w-[100%]' alt="" />
+                    <p>Course:{state?.title}</p>
+                    <p>Category:{state?.category}</p>
+                    <p>Instruct By:{state?.createdBy}</p>
+                    <p>Description Of Course : <br />{state?.description}</p>
                     {
                         role === "ADMIN" || data?.subscription?.status === 'active' ?
                             (
