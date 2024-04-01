@@ -4,7 +4,7 @@ function Footer() {
     const newDate = new Date();
     const year = newDate.getFullYear();
     return (
-        <footer className='   bg-gray-800
+        <footer className='  bg-gray-800
                              text-white flex flex-col sm:flex-row flex-wrap  justify-between items-center  ' >
             <section className=' m-4 sm:text-[16px] text-lg     '>
                 Copyright {year} | All rights reserved

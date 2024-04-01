@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Course from "../Components/Course";
 import { useEffect } from "react";
 import { getAllCourses } from "../redux/slices/courseSlice";
-//import { Dispatch } from "@reduxjs/toolkit";
 
 function Home() {
     const dispatch=useDispatch();
