@@ -50,9 +50,9 @@ function Header() {
         <div>
 
 
-            <div className=' bg-slate-700 text-white py-2 flex items-start justify-between   '>
+            <div className=' bg-gray-700 text-white   py-2 flex sm:flex-row flex-col    justify-between   '>
                 {/* Logo div */}
-                <div className='  justify-items-start ml-10 cursor-pointer  '>
+                <div className='  justify-items-start ml-10 cursor-pointer   '>
                     <Link to={'/'} className=' font-extrabold font-mono text-pretty'>
                         {/* <img src="..\src\assets\images\QuotesPersonalityImage\einstein.png" width={'50'} alt="icon" /> */}
                         s3
@@ -64,14 +64,16 @@ function Header() {
                     <button className=' border-2 border-red-300 rounded-[5px] p-1'>search</button>
                 </div> */}
                 {/* Menu field */}
-                <ul className='flex gap-3  mr-5'>
-                    <li className='hover:text-red-400 transition-colors duration-200 ease-in '><Link to={'/'}>Home</Link></li>
-                    <li className='hover:text-red-400 transition-colors duration-200 ease-in '><Link to={'/courses'}>Explore</Link></li>
+                <ul className='flex sm:flex-row flex-col    sm:gap-3 gap-1  sm:mr-5'>
+                    <li className='lg:hover:text-red-400 sm:hover:bg-inherit  hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center    transition-colors duration-200 ease-in '>
+                        <Link to={'/'}>Home</Link></li>
+                    <li className='hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center  transition-colors duration-200 ease-in '>
+                        <Link to={'/courses'}>Explore</Link></li>
                     {
                         isLoggedIn && role==='ADMIN'
                         ?<>
-                            <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/course/create'}>Create course</Link></li> 
-                            <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><Link  to={'/admin/dashboard'}>Admin DashBoard</Link></li> 
+                            <li className=' hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300'><Link  to={'/course/create'}>Create course</Link></li> 
+                            <li className=' hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300'><Link  to={'/admin/dashboard'}>Admin DashBoard</Link></li> 
                              
                             </>
                         :
@@ -89,7 +91,7 @@ function Header() {
                 {/* Login/Register/profile button */}
                 {
                     isLogin ?
-                        <div onClick={toogle ? showOptions : showOptions2nd} className='  relative right-8    '>
+                        <div onClick={toogle ? showOptions : showOptions2nd} className='  sm:relative sm:right-8    '>
                             <div className='  '>
                                 <img src={data?.user?.avatar?.secure_url} className='  cursor-pointer w-[40px] h-[40px]  p-[2px] bg-red-400  rounded-full hover:scale-[1.08] transition-all duration-200  ' alt="" />
                             </div>
@@ -100,7 +102,7 @@ function Header() {
                             </div>
                         </div>
                         :
-                        <div className=' cursor-pointer relative right-8 hover:bg-red-600 hover:scale-110 transition-all ease-linear duration-200 bg-red-500 rounded-[6px] border-[1px solid red] p-[7px] '>
+                        <div className='m-top-1 cursor-pointer sm:relative sm:right-8 sm:p-[7px]  text-center hover:bg-red-600 hover:scale-110 transition-all ease-linear duration-200 bg-red-500 rounded-lg border-[1px solid red] p-[7px] '>
                             <Link to="/login">Login/Register</Link>
                         </div>
                 }
