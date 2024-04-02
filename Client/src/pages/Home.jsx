@@ -3,19 +3,69 @@ import HomeLayout from "../layouts/HomeLayout";
 import CourseList from "./Course/CourseList";
 import { useDispatch, useSelector } from "react-redux";
 import Course from "../Components/Course";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllCourses } from "../redux/slices/courseSlice";
 
 function Home() {
-    const dispatch=useDispatch();
-const { courseList } = useSelector((state) => state.course);
-console.log(courseList);
-async function loadCourses(){
-    await dispatch(getAllCourses());
-}
-useEffect(()=>{
-    loadCourses();
-},[])
+    let [filterCourse, setFilterCourse] = useState([]);
+    let [categoryList, setCategoryList] = useState([]);
+    const dispatch = useDispatch();
+    const { courseList } = useSelector((state) => state.course);
+    // console.log(courseList);
+    const filterCourseHandler = (category) => {
+        let newArray = courseList.filter((e) => {
+            console.log(category);
+            return e.category == category;
+        });
+        //  console.log(newArray);
+
+        setFilterCourse(filterCourse = newArray);
+        console.log(filterCourse);
+    }
+
+    // let newArray=courseList.filter((e)=>{
+    //    return e.category==='React -js';
+    // })
+    async function loadCourses() {
+
+        await dispatch(getAllCourses());
+
+
+    }
+    useEffect(() => {
+        loadCourses();
+        // filterCourseHandler('React -js');
+        arrHandler();
+    }, [])
+    // console.log(filterCourse);
+
+    let arr = [];
+    let uniqueArray = [];
+    function unique(value, index, array) {
+        return array.indexOf(value) === index;
+
+    }
+    function arrHandler() {
+        courseList.map((c) => {
+            arr.push(c.category);
+        });
+
+        uniqueArray = arr.filter(unique);
+        setCategoryList(categoryList = uniqueArray);
+        console.log(uniqueArray);
+        console.log(categoryList);
+    }
+
+
+
+
+    // setCategoryList(categoryList=arr);
+    // console.log(arr);
+    // console.log(categoryList);
+    // console.log(uniqueArray);
+    console.log("Category List " + categoryList);
+
+
 
     return (
         <HomeLayout>
@@ -45,18 +95,50 @@ useEffect(()=>{
 
             </div>
             {/* water bank */}
-            <div className="h-[24px] bg-blue-300 filter-[1px] rounded-sm">
+            {/* <div className="h-[24px] bg-blue-300 filter-[1px] rounded-sm">
                 <h1 className="text-xl text-white text-center">All courses</h1>
+            </div> */}
+            <div className="  flex  sm:flex-row flex-col gap-2  justify-evenly items-center p-1 flex-wrap ">
+                {/* <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('Web Development')}>Web Development</button>
+                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('Python')}>Python</button>
+                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('HTML')}>HTML</button>
+                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('CSS')}>CSS</button>
+                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('MySql')}>MySql</button>
+                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('React -js')}>React -js</button> */}
+
+                {
+                    courseList.length > 0
+                        ?
+                        categoryList.map((c) => 
+                       
+
+                            <button key={c} className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler(c)}>{c}</button>
+
+                        )
+                        :
+                        <>
+                            <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('Web Development')}>Web Development</button>
+                            <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('Python')}>Python</button>
+                            <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('HTML')}>HTML</button>
+                            <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('CSS')}>CSS</button>
+                            <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('MySql')}>MySql</button>
+                            <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('React -js')}>React -js</button>
+
+                        </>
+                }
             </div>
 
             {/* course list all  */}
             <div className='min-h[90vh]  pt-12 pl-20 grid lg:md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 min-h-[81.5vh]  text-white bg-gray-700'>
-                {courseList.length > 0 ?
-                    courseList.map((c) => (
+                {filterCourse.length > 0 ?
+                    filterCourse.map((c) => (
                         <Course key={c._id} {...c} />
                     )) :
                     (
-                        <h1>There is no course yet!</h1>
+
+                        courseList.map((c) => (
+                            <Course key={c._id} {...c} />
+                        ))
                     )
 
                 }

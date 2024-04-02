@@ -9,7 +9,7 @@ function CreateCourse() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
     let {data}=useSelector((state)=>state?.auth) ;
-    data=JSON.parse(data);
+   // data=JSON.parse(data);
     //  console.log( data?.user?.fullName );
      console.log(data);
 
