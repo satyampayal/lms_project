@@ -8,7 +8,7 @@ import { getAllCourses } from "../redux/slices/courseSlice";
 
 function Home() {
     let [filterCourse, setFilterCourse] = useState([]);
-    let [categoryList, setCategoryList] = useState([]);
+    let [categoryList, setCategoryList] = useState(localStorage.getItem('category') ||[]);
     const dispatch = useDispatch();
     const { courseList } = useSelector((state) => state.course);
     // console.log(courseList);
@@ -32,8 +32,19 @@ function Home() {
 
 
     }
+    const handleCategory=()=>{
+        setCategoryList(categoryList=localStorage.getItem('category'));
+
+    }
     useEffect(() => {
         loadCourses();
+        // handleCategory();
+        // console.log("After"+localStorage.getItem('category'))
+        // const res=localStorage.getItem('category');
+        // console.log(res);
+        // localStorage.setItem('category',res.split(','));
+        // console.log("Before"+localStorage.getItem('category'))
+
         // filterCourseHandler('React -js');
         arrHandler();
     }, [])
@@ -51,20 +62,12 @@ function Home() {
         });
 
         uniqueArray = arr.filter(unique);
-        setCategoryList(categoryList = uniqueArray);
-        console.log(uniqueArray);
-        console.log(categoryList);
+        localStorage.setItem('category',uniqueArray);
+        const res=localStorage.getItem('category');
+        setCategoryList(categoryList = res.split(','));
+
+        // console.log(res.split(','));
     }
-
-
-
-
-    // setCategoryList(categoryList=arr);
-    // console.log(arr);
-    // console.log(categoryList);
-    // console.log(uniqueArray);
-    console.log("Category List " + categoryList);
-
 
 
     return (
@@ -138,7 +141,8 @@ function Home() {
 
                         courseList.map((c) => (
                             <Course key={c._id} {...c} />
-                        ))
+                        )
+                        )
                     )
 
                 }
