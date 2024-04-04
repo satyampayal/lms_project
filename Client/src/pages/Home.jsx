@@ -46,28 +46,29 @@ function Home() {
         // console.log("Before"+localStorage.getItem('category'))
 
         // filterCourseHandler('React -js');
-        arrHandler();
+        // arrHandler();
     }, [])
     // console.log(filterCourse);
 
-    let arr = [];
-    let uniqueArray = [];
-    function unique(value, index, array) {
-        return array.indexOf(value) === index;
+    // let arr = [];
+    // let uniqueArray = [];
+    // function unique(value, index, array) {
+    //     return array.indexOf(value) === index;
 
-    }
-    function arrHandler() {
-        courseList.map((c) => {
-            arr.push(c.category);
-        });
+    // }
+    // function arrHandler() {
+    //     courseList.map((c) => {
+    //         arr.push(c.category);
+    //     });
 
-        uniqueArray = arr.filter(unique);
-        localStorage.setItem('category',uniqueArray);
-        const res=localStorage.getItem('category');
-        setCategoryList(categoryList = res.split(','));
+    //     uniqueArray = arr.filter(unique);
+    //     localStorage.setItem('category',uniqueArray);
+    //     const res=localStorage.getItem('category');
+    //     setCategoryList(categoryList = res.split(','));
 
         // console.log(res.split(','));
-    }
+    // }
+    // setInterval(arrHandler,1000);
 
 
     return (
@@ -102,14 +103,14 @@ function Home() {
                 <h1 className="text-xl text-white text-center">All courses</h1>
             </div> */}
             <div className="  flex  sm:flex-row flex-col gap-2  justify-evenly items-center p-1 flex-wrap ">
-                {/* <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('Web Development')}>Web Development</button>
-                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('Python')}>Python</button>
-                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('HTML')}>HTML</button>
-                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('CSS')}>CSS</button>
-                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('MySql')}>MySql</button>
-                <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('React -js')}>React -js</button> */}
+                 <button className="  hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('Web Development')}>Web Development</button>
+                <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('Python')}>Python</button>
+                <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('HTML')}>HTML</button>
+                <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('CSS')}>CSS</button>
+                {/* <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('MySql')}>MySql</button> */}
+                <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('React -js')}>React -js</button> 
 
-                {
+                {/* {
                     courseList.length > 0
                         ?
                         categoryList.map((c) => 
@@ -127,8 +128,9 @@ function Home() {
                             <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('MySql')}>MySql</button>
                             <button className="p-1 rounded-md active:bg-red-400" onClick={() => filterCourseHandler('React -js')}>React -js</button>
 
-                        </>
-                }
+                        </> }*/
+                        }
+                
             </div>
 
             {/* course list all  */}
