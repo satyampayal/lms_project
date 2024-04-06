@@ -24,7 +24,7 @@ function App() {
   // toast.success('Confirm');
   // })
 
-  const {isLoggedIn}=useSelector((state)=>state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   return (
     <Routes>
       <Route path='/' element={<Layout />} />
@@ -38,39 +38,42 @@ function App() {
         <Route path='course/create/' element={<CreateCourse />} />
       </Route>
       {
-        isLoggedIn?
-        <Route path='/me' element={<Profile/>} /> 
-        :
-      <Route path='/login' element={<Login />} />
+        isLoggedIn ?
+          <Route path='/me' element={<Profile />} />
+          :
+          <Route path='/login' element={<Login />} />
       }
-       {
-        isLoggedIn?
-        <Route path='/me/change-password' element={<ChangePassword/>} /> 
-        :
-      <Route path='/login' element={<Login />} />
+      {
+        isLoggedIn ?
+          <Route path='/me/change-password' element={<ChangePassword />} />
+          :
+          <Route path='/login' element={<Login />} />
       }
-        {
-        isLoggedIn?
-        <Route path='/me/edit-profile' element={<EditProfile/>} /> 
-        :
-      <Route path='/login' element={<Login />} />
+      {
+        isLoggedIn ?
+          <Route path='/me/edit-profile' element={<EditProfile />} />
+          :
+          <Route path='/login' element={<Login />} />
       }
 
-      {/* Display Lecture Route */}
+      {/* Display Lecture Route paid */}
       {
-        isLoggedIn?
-        <Route path='/course/lectures/:courseId' element={<DisplayLectures/>} /> 
-        :
-      <Route path='/login' element={<Login />} />
+        isLoggedIn ?
+          <Route path='/course/lectures/:courseId' element={<DisplayLectures />} />
+          :
+          <Route path='/login' element={<Login />} />
       }
-        {/* Add Lecture Route */}
-        {
-        isLoggedIn?
-        <Route path='/course/addLecture/:courseId' element={<AddLecture/>} /> 
-        :
-      <Route path='/login' element={<Login />} />
+      {/* Display Lecture Route for free to enhanse customer */}
+      <Route path='/free/lectures/:courseId' element={<DisplayLectures />} />
+
+      {/* Add Lecture Route */}
+      {
+        isLoggedIn ?
+          <Route path='/course/addLecture/:courseId' element={<AddLecture />} />
+          :
+          <Route path='/login' element={<Login />} />
       }
-      
+
       <Route path='/denied' element={<Denied />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

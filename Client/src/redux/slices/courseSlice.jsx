@@ -168,6 +168,28 @@ export const deleteLecture = createAsyncThunk('/course/delete/lecture', async ()
 
   }
 })
+// unLogin user can watch lecture 30% of width with limit 10lectures or full
+export const freeLectureOnly=createAsyncThunk('/get/free/lectures',async ()=>{
+
+  try {
+    const url = location.href.split('/');
+    const courseId = url.splice(5);
+    console.log(courseId)
+    const response = axiosInstance.get(`/courses/free/${courseId}`);
+    toast.promise(response, {
+      loading: 'wait for get lecture',
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: 'failed to get  lecture'
+
+    })
+    return (await response).data;
+  } catch (error) {
+    toast.error(error.message);
+
+  }
+})
 
 
 const courseSlice = createSlice({

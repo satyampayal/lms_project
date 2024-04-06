@@ -35,6 +35,11 @@ router
       addLectureToCourseById,
    );
 
+   // changes in serve rfor free lecture 
+   router.
+   route('/free/:courseId')
+   .get(getLecturesByCourseId);
+
 
 
 export default router;

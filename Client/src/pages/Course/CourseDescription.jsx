@@ -11,20 +11,20 @@ function CourseDescription() {
     const { role, data, } = useSelector((state) => state.auth); // this select user deatils  from authSlice.jsx we have some state
     //console.log(isLoggedIn);
 
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     // const {courseId}=useParams();
     // console.log("From Course Description "+courseId);
 
     // delet course Handler
-   const deleteCourseHandler=async (e)=>{
-    e.preventDefault();
+    const deleteCourseHandler = async (e) => {
+        e.preventDefault();
 
-    const response=await dispatch(deleteCourse());
-    console.log(response);
-    
-     navigate('/courses');
+        const response = await dispatch(deleteCourse());
+        console.log(response);
 
-   }
+        navigate('/courses');
+
+    }
 
     return (
         <HomeLayout>
@@ -45,22 +45,29 @@ function CourseDescription() {
                                 </button>
                             )
                             :
-                            (
+                            (<>
                                 <button
                                     onClick={() => navigate('/checkout')}
                                     className=' p-4 rounded-xl bg-red-500 hover:bg-red-600 transition-all duration-200 ease-in'
                                 >
                                     Subscribed
                                 </button>
+                                <button
+                                    onClick={() => navigate(`/free/lectures/${state?._id}`, { state: { ...state } })}
+                                    className='mt-1 p-4 rounded-xl bg-green-500 hover:bg-green-600 transition-all duration-200 ease-in'
+                                >
+                                    view some lectures
+                                </button>
+                            </>
                             )
                     }
 
                     {
-                        role === "ADMIN"?
+                        role === "ADMIN" ?
                             (
                                 <>
                                     <button
-                                    onClick={deleteCourseHandler}
+                                        onClick={deleteCourseHandler}
                                         className=' mt-2 p-4 rounded-xl bg-red-500 hover:bg-red-600 transition-all duration-200 ease-in'
 
                                     >
