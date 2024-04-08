@@ -107,7 +107,6 @@ function Home() {
                 <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('Python')}>Python</button>
                 <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('HTML')}>HTML</button>
                 <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('CSS')}>CSS</button>
-                {/* <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('MySql')}>MySql</button> */}
                 <button className=" hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300" onClick={() => filterCourseHandler('React -js')}>React -js</button> 
 
                 {/* {
