@@ -13,6 +13,7 @@ function DisplayLectures() {
     console.log(state?.numberOfLectures);
     let [lectures, setLectures] = useState([]);
     let [freeLectures, setFreeLectures] = useState([]);
+    const [videoLecture,setVideoLecture]=useState(lectures[0]?.lecture?.secure_url||'');
 
     const showLecturesHandler = async () => {
         const response = await dispatch(getLectures());
@@ -53,14 +54,15 @@ function DisplayLectures() {
 
     return (
         <HomeLayout>
-            <div className='bg-gray-500 text-white flex justify-center items-center m-auto min-h-[81.5vh]'>
-                <div>
-                    <div className='p-2 flex flex-col justify-between'>
+            <div className='bg-gray-500 text-white flex sm:flex-row  flex-col-reverse justify-around  items-center min-h-[81.5vh] p-2'>
+                    
+                <div className='w-[30vw]'>
+                    <div className='p-2  flex flex-col '>
                         {
                             //  isLoggedIn === true || isLoggedIn===false  ?            
                                     state?.
                                         numberOfLectures > 0 ?(
-                                        <button type='none' className='bg-blue-400 p-2 rounded-md mb-2'
+                                        <button type='none' className='bg-blue-400 p-2 rounded-md m-1'
                                             onClick={showFreeLecturesHandler} >
                                             show free Lectures
                                         </button>
@@ -71,7 +73,7 @@ function DisplayLectures() {
                         }
                         {/* <h1>Number of lectures{state?.numberOfLectures}</h1> */}
                         {state?.
-                            numberOfLectures > 0 && isLoggedIn ? <button type='none' className='bg-blue-400 p-2 rounded-md'
+                            numberOfLectures > 0 && isLoggedIn ? <button type='none' className='bg-blue-400 p-2 rounded-md m-1'
                                 onClick={showLecturesHandler} >
                             show Lectures
                         </button>
@@ -92,14 +94,15 @@ function DisplayLectures() {
                     {
                         state?.
                             numberOfLectures
-                            > 0 ? (lectures?.map((l) => (
+                            > 0 ? (lectures?.map((l,index) => (
                                 <div
                                     key={l._id}
                                     className=' flex flex-col gap-1 bg-slate-50 p-2 
-                                rounded-lg mb-3 justify-center items-center relative'
+                                rounded-lg m-1 justify-center items-center relative cursor-pointer'
+                                onClick={()=>setVideoLecture(l?.lecture?.secure_url)}
 
                                 >
-                                    <video className='video' controls src={l.lecture.secure_url} width={'540px'} height={'240px'} ></video>
+                                    {/* <video className='video' controls src={l.lecture.secure_url} width={'540px'} height={'240px'} ></video> */}
                                     {/* video controls div */}
                                     {/* <div className='relative bottom-[40px]  flex-self  '>
                                         // { <FaRegPlayCircle  /> }
@@ -109,11 +112,11 @@ function DisplayLectures() {
 
                                     </div> 
                                     */}
+                                    <h1 className='text-green-600'>Lecture:{index+1}</h1>
                                     <h1 className='text-green-600'>Title:{l.title}</h1>
-                                    <h1 className='text-blue-500 text-wrap max-w-[30vw]'>Description:{l.description}</h1>
                                     {
                                         role === "ADMIN" ?
-                                            <button className='bg-green-600 p-2 rounded-md'
+                                            <button className='bg-green-600 p-2 rounded-md select-none'
                                                 onClick={() => lectureDeleteHandler()}
                                             ><Link to={`/course/lectures?courseId=${state._id}&lectureId=${l._id}`}>Delete Lectures</Link> </button>
 
@@ -131,14 +134,17 @@ function DisplayLectures() {
                     {
                         state?.
                             numberOfLectures
-                            > 0 ? (freeLectures?.map((l) => (
+                            > 0 ? (freeLectures?.map((l,index) => (
                                 <div
                                     key={l._id+"satyam"}
-                                    className=' flex flex-col gap-1 bg-slate-50 p-2 
-                                rounded-lg mb-3 justify-center items-center relative'
+                                    className='  bg-slate-50 p-2  
+                                rounded-[10px] m-1 cursor-pointer '
+
+                                onClick={()=>setVideoLecture(l.lecture.secure_url)}
 
                                 >
-                                    <video className='video' controls src={l.lecture.secure_url} width={'540px'} height={'240px'} ></video>
+                                    {/* <video className='video' controls src={l.lecture.secure_url} width={'540px'} height={'240px'} ></video> */}
+                                    
                                     {/* video controls div */}
                                     {/* <div className='relative bottom-[40px]  flex-self  '>
                                         // { <FaRegPlayCircle  /> }
@@ -148,8 +154,10 @@ function DisplayLectures() {
 
                                     </div> 
                                     */}
+                                    
+                                    <h1 className='text-green-600'>Lecture:{index+1}</h1>
                                     <h1 className='text-green-600'>Title:{l.title}</h1>
-                                    <h1 className='text-blue-500 text-wrap max-w-[30vw]'>Description:{l.description}</h1>
+                                    {/* <h1 className='text-blue-500 text-wrap max-w-[30vw]'>Description:{l.description}</h1> */}
                                     {
                                         role === "ADMIN" ?
                                             <button className='bg-green-600 p-2 rounded-md'
@@ -165,7 +173,21 @@ function DisplayLectures() {
                             <h1 className='text-2xl font-bold text-red-200s'>There is no free lecture upload yet!</h1>
 
                     }
+
+                
                 </div>
+                   {/* VIDEO SHOW  */}
+                  { 
+                   videoLecture===''?
+                   <>
+                   </>
+                   :
+                  <div className='sm:w-[70vw] w-[100vw]'>
+                        <div>
+                            <video src={videoLecture}  className='sm:w-full w-[100vw]' controls></video>
+                        </div>
+                    </div>}
+             
             </div>
 
         </HomeLayout>
