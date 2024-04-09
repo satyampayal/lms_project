@@ -13,7 +13,7 @@ function DisplayLectures() {
     console.log(state?.numberOfLectures);
     let [lectures, setLectures] = useState([]);
     let [freeLectures, setFreeLectures] = useState([]);
-    const [videoLecture,setVideoLecture]=useState(lectures[0]?.lecture?.secure_url||'');
+    const [videoLecture,setVideoLecture]=useState('');
 
     const showLecturesHandler = async () => {
         const response = await dispatch(getLectures());
@@ -49,15 +49,16 @@ function DisplayLectures() {
 
     // }
 
+    console.log(videoLecture);
 
 
 
     return (
         <HomeLayout>
-            <div className='bg-gray-500 text-white flex sm:flex-row  flex-col-reverse justify-around  items-center min-h-[81.5vh] p-2'>
+            <div className=' text-white flex sm:flex-row  flex-col-reverse justify-around  items-center min-h-[81.5vh] p-2 select-none'>
                     
                 <div className='w-[30vw]'>
-                    <div className='p-2  flex flex-col '>
+                    <div className='p-2  flex flex-col  '>
                         {
                             //  isLoggedIn === true || isLoggedIn===false  ?            
                                     state?.
@@ -68,7 +69,7 @@ function DisplayLectures() {
                                         </button>
                                         )
                                         :   <>
-                                        <h1 className=''>There is no free lecture of this course</h1>
+                                        <h1 className=''>There is no Demo lecture of this course</h1>
                                     </>
                         }
                         {/* <h1>Number of lectures{state?.numberOfLectures}</h1> */}
@@ -97,9 +98,9 @@ function DisplayLectures() {
                             > 0 ? (lectures?.map((l,index) => (
                                 <div
                                     key={l._id}
-                                    className=' flex flex-col gap-1 bg-slate-50 p-2 
-                                rounded-lg m-1 justify-center items-center relative cursor-pointer'
-                                onClick={()=>setVideoLecture(l?.lecture?.secure_url)}
+                                    className='  bg-slate-100 p-1 
+                                rounded-lg m-1   cursor-pointer text-center '
+                                onClick={()=>setVideoLecture(l)}
 
                                 >
                                     {/* <video className='video' controls src={l.lecture.secure_url} width={'540px'} height={'240px'} ></video> */}
@@ -140,7 +141,7 @@ function DisplayLectures() {
                                     className='  bg-slate-50 p-2  
                                 rounded-[10px] m-1 cursor-pointer '
 
-                                onClick={()=>setVideoLecture(l.lecture.secure_url)}
+                                onClick={()=>setVideoLecture(l)}
 
                                 >
                                     {/* <video className='video' controls src={l.lecture.secure_url} width={'540px'} height={'240px'} ></video> */}
@@ -184,7 +185,11 @@ function DisplayLectures() {
                    :
                   <div className='sm:w-[70vw] w-[100vw]'>
                         <div>
-                            <video src={videoLecture}  className='sm:w-full w-[100vw]' controls></video>
+                            <video src={videoLecture?.lecture?.secure_url}  className='sm:w-full w-[100vw]' controls></video>
+                        </div>
+                        <div  className='flex w-full flex-col gap-2'>
+                            <h1 className='text-black p-2 text-2xl'>Title:{videoLecture?.title}</h1>
+                            <h1 className='text-black p-2 text-2xl'>Description:{videoLecture?.description}</h1>
                         </div>
                     </div>}
              
