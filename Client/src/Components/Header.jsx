@@ -22,14 +22,14 @@ function Header() {
     // ADMIN Header End
 
     // show Option of Profile start
-    const showOptions = () => {
+    const hideOption = () => {
         const showDetails = document.getElementById('showDetails');
-        console.log(showDetails);
+        // console.log(showDetails);
         showDetails.classList.replace('flex', 'hidden');
         setToogle(!toogle);
 
     }
-    const showOptions2nd = () => {
+    const showOptions = () => {
         const showDetails = document.getElementById('showDetails');
         //console.log(showDetails);
         showDetails.classList.replace('hidden', 'flex');
@@ -50,7 +50,7 @@ function Header() {
         <div>
 
 
-            <div className=' bg-gray-700 text-white   py-2 flex sm:flex-row flex-col    justify-between   '>
+            <div className=' bg-gray-700 text-white   py-2 flex sm:flex-row flex-col    justify-between    '>
                 {/* Logo div */}
                 <div className='  justify-items-start ml-10 cursor-pointer   '>
                     <Link to={'/'} className=' font-extrabold font-mono text-pretty'>
@@ -91,11 +91,11 @@ function Header() {
                 {/* Login/Register/profile button */}
                 {
                     isLogin ?
-                        <div onClick={toogle ? showOptions : showOptions2nd} className='  sm:relative sm:right-8    '>
+                        <div onClick={toogle ? hideOption : showOptions} className='  sm:relative sm:right-8  self-center   '>
                             <div className='  '>
                                 <img src={data?.user?.avatar?.secure_url} className='  cursor-pointer w-[40px] h-[40px]  p-[2px] bg-red-400  rounded-full hover:scale-[1.08] transition-all duration-200  ' alt="" />
                             </div>
-                            <div id='showDetails' className=' showDetails hidden relative  sm:absolute sm:top-[50px] sm:left-[-50px] z-50 flex-col justify-center items-center w-[100px]   text-center h-[full] rounded-[10px] bg-gray-800'>
+                            <div id='showDetails' className=' showDetails hidden   absolute sm:top-[50px] sm:left-[-50px] z-50 flex-col justify-center items-center w-[100px]   text-center h-[full] rounded-[10px] bg-gray-800'>
                                 <Link to={'/courses'} className='hover:text-red-400 transition-colors duration-200 ease-in '>courses</Link>
                                 <Link to={'/me'} className='hover:text-red-400 transition-colors duration-200 ease-in '>my profile</Link>
                                 <Link onClick={logoutHandler} className='hover:text-red-400 transition-colors duration-200 ease-in '>logout</Link>
