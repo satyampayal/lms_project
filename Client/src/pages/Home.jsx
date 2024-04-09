@@ -14,7 +14,7 @@ function Home() {
     // console.log(courseList);
     const filterCourseHandler = (category) => {
         let newArray = courseList.filter((e) => {
-            console.log(category);
+            // console.log(category);
             return e.category == category;
         });
         //  console.log(newArray);
