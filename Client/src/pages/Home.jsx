@@ -32,10 +32,10 @@ function Home() {
 
 
     }
-    const handleCategory=()=>{
-        setCategoryList(categoryList=localStorage.getItem('category'));
+    // const handleCategory=()=>{
+    //     setCategoryList(categoryList=localStorage.getItem('category'));
 
-    }
+    // }
     useEffect(() => {
         loadCourses();
         // handleCategory();
