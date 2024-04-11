@@ -25,7 +25,7 @@ export const buySubscription = async (req, res, next) => {
             return (new AppError('UnAuthorised,Please Login', 400))
         }
         if (user.role === 'ADMIN') {
-            return (new AppError('ADMIN,Not Neaad to purchase', 200))
+            return (new AppError('ADMIN,Not Nead to purchase', 200))
 
         }
 
@@ -38,11 +38,16 @@ export const buySubscription = async (req, res, next) => {
         user.subscription.id = subscription.id;
         user.subscription.status = subscription.status;
         await user.save();
+        console.log();
+        console.log();
+        console.log();
+        console.log("Subscription Id"+subscription.id);
 
         res.status(200).json({
             success: true,
             message: 'Subscribed SuccessFully',
-
+            // subscription_id:subscription.id
+            subscription_id:await subscription.id,
         })
     } catch (e) {
         return (

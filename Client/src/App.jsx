@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import EditProfile from './pages/User/EditProfile';
 import DisplayLectures from './pages/Course/DisplayLectures';
 import AddLecture from './pages/Course/AddLecture';
+import Checkout from './pages/Payment/Checkout';
 function App() {
   // useEffect(()=>{
   // //  toast.error('Hello',{
@@ -73,6 +74,8 @@ function App() {
           :
           <Route path='/login' element={<Login />} />
       }
+
+      <Route path='/checkout' element={<Checkout/>}/>
 
       <Route path='/denied' element={<Denied />} />
       <Route path='*' element={<NotFound />} />
