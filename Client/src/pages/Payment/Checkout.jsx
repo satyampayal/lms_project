@@ -19,8 +19,8 @@ function Checkout() {
         razorpay_signature:"",
     }
     async function load(){
-        await dispatch(purchaseCourseBundle());
         await dispatch(getRazorPayId());
+        await dispatch(purchaseCourseBundle());
 
 
     }
@@ -46,6 +46,7 @@ function Checkout() {
                 toast.success('Payment Successfull');
 
                 // verfying payment Details
+                console.log(paymentDetails);
                 const res=await dispatch(verifyUserPayment(paymentDetails));
                 res?.payload?.success ? navigate('/checkout/success') :navigate('/checkout/fail');
             }

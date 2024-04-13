@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 function Header() {
     const dispatch = useDispatch();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn'));
     const [toogle, setToogle] = useState(false);
-    let data =localStorage.getItem('data') ;
-     data=JSON.parse(data);
-     //console.log(data.user.avatar.secure_url);
+    let data = localStorage.getItem('data');
+    data = JSON.parse(data);
+    //console.log(data.user.avatar.secure_url);
     //  console.log(data);
 
     // for ADMIN header 
@@ -18,7 +18,7 @@ function Header() {
     let { isLoggedIn, role } = useSelector((state) => state.auth);
     // console.log(data)
 
-   // console.log("From header file login" + isLoggedIn + "And role is:" + role);
+    // console.log("From header file login" + isLoggedIn + "And role is:" + role);
     // ADMIN Header End
 
     // show Option of Profile start
@@ -43,7 +43,7 @@ function Header() {
         const response = await dispatch(logout());
         setIsLogin(false);
         navigate('/');
-        
+
         // console.log(response);
     }
     return (
@@ -64,29 +64,28 @@ function Header() {
                     <button className=' border-2 border-red-300 rounded-[5px] p-1'>search</button>
                 </div> */}
                 {/* Menu field */}
+
                 <ul className='flex sm:flex-row flex-col    sm:gap-3 gap-1  sm:mr-5'>
                     <li className='lg:hover:text-red-400 sm:hover:bg-inherit  hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center    transition-colors duration-200 ease-in '>
                         <Link to={'/'}>Home</Link></li>
                     <li className='hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center  transition-colors duration-200 ease-in '>
                         <Link to={'/courses'}>Explore</Link></li>
                     {
-                        isLoggedIn && role==='ADMIN'
-                        ?<>
-                            <li className=' hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300'><Link  to={'/course/create'}>Create course</Link></li> 
-                            <li className=' hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300'><Link  to={'/admin/dashboard'}>Admin DashBoard</Link></li> 
-                             
-                            </>
-                        :
-                        (
-                            <>
+                        isLoggedIn && role === 'ADMIN'
+                            ? <>
+                                <li className=' hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300'><Link to={'/course/create'}>Create course</Link></li>
+                                <li className=' hover:text-red-400 sm:hover:bg-inherit hover:bg-green-300 sm:rounded-none rounded-lg sm:p-0 p-3  text-center   transition-all ease-linear duration-300'><Link to={'/admin/dashboard'}>Admin DashBoard</Link></li>
 
                             </>
-                        )
+                            :
+                            (
+                                <>
+
+                                </>
+                            )
 
                     }
-                    {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Course List</a></li> */}
-                    {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">Contact us</a></li> */}
-                    {/* <li className=' hover:border-b-red-400 hover:border-b-[1px] transition-all ease-linear duration-300'><a href="#">About us</a></li> */}
+
                 </ul>
                 {/* Login/Register/profile button */}
                 {
@@ -107,6 +106,32 @@ function Header() {
                         </div>
                 }
             </div>
+            <div onMouseEnter={() => {
+                const showCourseMenu = document.getElementById('show_course_menu');
+                showCourseMenu.classList.replace('hidden', 'flex');
+                console.log(showCourseMenu);
+
+            }}
+
+                className=' cursor-pointer p-2 text-2xl font-thin text-black bg-slate-50 rounded-md  '>Courses</div>
+            <ul id='show_course_menu' className=' hidden absolute top-[17%] left-4 bg-white p-2 rounded-lg flex-col text-start gap-2 justify-start items-center'>
+                <li
+                    onMouseEnter={() => {
+                        const showWebMenu = document.getElementById('show_web_menu');
+                        showWebMenu.classList.replace('hidden', 'flex');
+                        console.log(showWebMenu);
+                    }}
+                    className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>web developer </li>
+                <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>Software Engineering </li>
+                <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>Dsa</li>
+                <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>DS</li>
+                <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>java Decode</li>
+            </ul>
+            <ul id='show_web_menu' className=' hidden absolute top-[17%] left-[14%] bg-white p-2 rounded-lg flex-col text-start gap-2 justify-start items-center'>
+                <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>Full Stack Developer</li>
+                <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>Node js </li>
+            </ul>
+
         </div>
     )
 }

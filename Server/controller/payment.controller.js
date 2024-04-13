@@ -47,7 +47,7 @@ export const buySubscription = async (req, res, next) => {
             success: true,
             message: 'Subscribed SuccessFully',
             // subscription_id:subscription.id
-            subscription_id:await subscription.id,
+            subscription_id: subscription.id,
         })
     } catch (e) {
         return (

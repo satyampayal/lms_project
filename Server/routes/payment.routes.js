@@ -16,7 +16,7 @@ router
 
 router
     .route('/subscribe')
-    .get(isLoggedIn,
+    .post(isLoggedIn,
         buySubscription
     );
 
