@@ -47,9 +47,14 @@ function Header() {
         // console.log(response);
     }
     return (
-        <div>
+        <div  onClick={() => {
+            const showCourseMenu = document.getElementById('show_course_menu');
+            showCourseMenu.classList.replace('flex', 'hidden');
+            const showWebMenu = document.getElementById('show_web_menu');
+            showWebMenu.classList.replace('flex', 'hidden');
+        }}>
 
-
+           
             <div className=' bg-gray-700 text-white   py-2 flex sm:flex-row flex-col    justify-between    '>
                 {/* Logo div */}
                 <div className='  justify-items-start ml-10 cursor-pointer   '>
@@ -112,15 +117,18 @@ function Header() {
                 console.log(showCourseMenu);
 
             }}
-
-                className=' cursor-pointer p-2 text-2xl font-thin text-black bg-slate-50 rounded-md  '>Courses</div>
-            <ul id='show_course_menu' className=' hidden absolute top-[17%] left-4 bg-white p-2 rounded-lg flex-col text-start gap-2 justify-start items-center'>
+                className=' cursor-pointer p-2 text-2xl font-thin text-black bg-slate-50 rounded-md inline-block  '>Courses</div>
+            <ul id='show_course_menu' className=' hidden absolute top-[17%] left-4 bg-white p-2 rounded-lg flex-col text-start gap-2 justify-start items-start w-[200px]'>
                 <li
                     onMouseEnter={() => {
                         const showWebMenu = document.getElementById('show_web_menu');
                         showWebMenu.classList.replace('hidden', 'flex');
                         console.log(showWebMenu);
                     }}
+                    // onMouseLeave={()=>{
+                    //     const showWebMenu = document.getElementById('show_web_menu');
+                    //     showWebMenu.classList.replace('flex', 'hidden');
+                    // }}
                     className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>web developer </li>
                 <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>Software Engineering </li>
                 <li className='hover:text-red-400 transition-colors duration-200 ease-in cursor-pointer'>Dsa</li>

@@ -73,7 +73,13 @@ function Home() {
 
     return (
         <HomeLayout>
-            <div className="bg-slate-700 text-white sm:min-h-[88vh] flex  justify-between items-center select-none  sm:flex-row flex-col  ">
+            <div   onClick={() => {
+            const showCourseMenu = document.getElementById('show_course_menu');
+            showCourseMenu.classList.replace('flex', 'hidden');
+            const showWebMenu = document.getElementById('show_web_menu');
+            showWebMenu.classList.replace('flex', 'hidden');
+        }}
+             className="bg-slate-700 text-white sm:min-h-[88vh] flex  justify-between items-center select-none  sm:flex-row flex-col  ">
                 <div className="flex flex-col justify-between w-[90vw] mx-[20px]">
                     <div className="flex gap-4">
                         <h3 className="font-bold sm:text-[30px] text-[19px]"> Upskilling made  </h3>

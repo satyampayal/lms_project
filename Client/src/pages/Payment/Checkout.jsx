@@ -19,6 +19,7 @@ function Checkout() {
         razorpay_signature:"",
     }
     async function load(){
+
         await dispatch(getRazorPayId());
         await dispatch(purchaseCourseBundle());
 
@@ -30,16 +31,17 @@ function Checkout() {
         console.log(subscription_id);
         console.log("Razor Pay Key"+razorpayKey);
         
-        // if(!razorpayKey || !subscription_id ){
-        //  toast.error("Something in handleSunscription went wrong");
-        //  return;
-        // }
+        if(!razorpayKey || !subscription_id ){
+         toast.error("Something in handleSunscription went wrong");
+         return;
+        }
         const options= {
             key:razorpayKey,
             subscription_id: subscription_id,
             name:"Course Pvt.ltd",    
             description:"Subscription",
             handler:async function(response){
+                alert(response.razorpay_signature);
                 paymentDetails.razorpay_payment_id=response.razorpay_payment_id;
                 paymentDetails.razorpay_subscription_id=response.razorpay_subscription_id;
                 paymentDetails.razorpay_signature=response.razorpay_signature;

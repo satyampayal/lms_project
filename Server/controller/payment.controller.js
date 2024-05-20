@@ -20,6 +20,7 @@ export const getRazorPayApiKey = async (req, res, next) => {
 export const buySubscription = async (req, res, next) => {
     try {
         const { id } = req.user;
+        console.log(id);
         const user = await User.findById(id);
         if (!user) {
             return (new AppError('UnAuthorised,Please Login', 400))
@@ -38,9 +39,7 @@ export const buySubscription = async (req, res, next) => {
         user.subscription.id = subscription.id;
         user.subscription.status = subscription.status;
         await user.save();
-        console.log();
-        console.log();
-        console.log();
+
         console.log("Subscription Id"+subscription.id);
 
         res.status(200).json({
