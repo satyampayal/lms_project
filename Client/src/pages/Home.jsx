@@ -100,7 +100,7 @@ function Home() {
 
                 </div>
                 <div className="  ">
-                    <img src="..\src\assets\images\homePageMainImage.png" alt="homeImage" />
+                    <img src="https://th.bing.com/th?id=OIP.p6ckKuaSJMchiVblO3PscAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="homeImage" />
                 </div>
 
             </div>
