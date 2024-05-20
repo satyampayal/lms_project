@@ -17,6 +17,9 @@ export const razorpay=new Razorpay({
     key_secret:process.env.RAZORPAY_SECRET
 });
 
+
+
+
 app.listen(PORT,()=>{
     connectedToDB();
     console.log('Connected to server '+ PORT)
