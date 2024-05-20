@@ -100,7 +100,7 @@ function Home() {
 
                 </div>
                 <div className="  ">
-                    <img src="..\src\assets\images\homePageMainImage.png" alt="homeImage" />
+                    {/* <img src="..\src\assets\images\homePageMainImage.png" alt="homeImage" /> */}
                 </div>
 
             </div>
