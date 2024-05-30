@@ -3,7 +3,8 @@ import toast from "react-hot-toast";
 import axiosInstance from "../../config/AxiosIns";
 
 const initialState = {
-  courseList: []
+  courseList: [],
+  load:false,
 }
 
 
@@ -184,7 +185,16 @@ export const freeLectureOnly=createAsyncThunk('/get/free/lectures',async ()=>{
       error: 'failed to get  lecture'
 
     })
-    return (await response).data;
+    const res=(await response).data;
+   
+    // res.lectures={...lectArray};
+    console.log(res.lectures)
+    if(res.lectures.length>0)
+    res.lectures=[res.lectures[0]];
+   // console.log(res);
+
+    
+    return res;
   } catch (error) {
     toast.error(error.message);
 
@@ -202,8 +212,9 @@ const courseSlice = createSlice({
         //console.log(action.payload);
         if (action?.payload) {
           state.courseList = [...action.payload];
+          state.load=true;
         }
-        console.log(state.courseList)
+        //console.log(state.courseList)
       })
       // .addCase(deleteCourse.fulfilled, (state,action)=>{
       //   if(action?.payload){

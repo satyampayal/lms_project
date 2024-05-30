@@ -30,7 +30,7 @@ function DisplayLectures() {
 
     const showFreeLecturesHandler = async () => {
         const response = await dispatch(freeLectureOnly());
-        // console.log(response);
+         console.log(response);
         setFreeLectures(freeLectures = response?.payload?.lectures)
         // console.log(lectures);
     }
@@ -55,7 +55,7 @@ function DisplayLectures() {
 
     return (
         <HomeLayout>
-            <div className=' text-white flex sm:flex-row  flex-col-reverse justify-around  items-center min-h-[81.5vh] p-2 select-none'>
+            <div className=' text-red-300 flex sm:flex-row  flex-col-reverse justify-around  items-center min-h-[81.5vh] p-2 select-none'>
                     
                 <div className='w-[30vw]'>
                     <div className='p-2  flex flex-col  '>

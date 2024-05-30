@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Course from "../Components/Course";
 import { useEffect, useState } from "react";
 import { getAllCourses } from "../redux/slices/courseSlice";
+//import  "../App.css";
 
 function Home() {
     let [filterCourse, setFilterCourse] = useState([]);
     let [categoryList, setCategoryList] = useState(localStorage.getItem('category') ||[]);
     const dispatch = useDispatch();
     const { courseList } = useSelector((state) => state.course);
+    const {load}=useSelector((state)=>state.course);
     // console.log(courseList);
     const filterCourseHandler = (category) => {
         let newArray = courseList.filter((e) => {
@@ -20,57 +22,27 @@ function Home() {
         //  console.log(newArray);
 
         setFilterCourse(filterCourse = newArray);
-        console.log(filterCourse);
+      //  console.log(filterCourse);
     }
 
-    // let newArray=courseList.filter((e)=>{
-    //    return e.category==='React -js';
-    // })
+   
     async function loadCourses() {
 
         await dispatch(getAllCourses());
+       
 
 
     }
-    // const handleCategory=()=>{
-    //     setCategoryList(categoryList=localStorage.getItem('category'));
-
-    // }
+  
     useEffect(() => {
-        loadCourses();
-        // handleCategory();
-        // console.log("After"+localStorage.getItem('category'))
-        // const res=localStorage.getItem('category');
-        // console.log(res);
-        // localStorage.setItem('category',res.split(','));
-        // console.log("Before"+localStorage.getItem('category'))
+        if(load==false) {          
 
-        // filterCourseHandler('React -js');
-        // arrHandler();
+              loadCourses();
+             
+            }
+    
     }, [])
-    // console.log(filterCourse);
-
-    // let arr = [];
-    // let uniqueArray = [];
-    // function unique(value, index, array) {
-    //     return array.indexOf(value) === index;
-
-    // }
-    // function arrHandler() {
-    //     courseList.map((c) => {
-    //         arr.push(c.category);
-    //     });
-
-    //     uniqueArray = arr.filter(unique);
-    //     localStorage.setItem('category',uniqueArray);
-    //     const res=localStorage.getItem('category');
-    //     setCategoryList(categoryList = res.split(','));
-
-        // console.log(res.split(','));
-    // }
-    // setInterval(arrHandler,1000);
-
-
+ 
     return (
         <HomeLayout>
             <div   onClick={() => {
@@ -83,29 +55,29 @@ function Home() {
                 <div className="flex flex-col justify-between w-[90vw] mx-[20px]">
                     <div className="flex gap-4">
                         <h3 className="font-bold sm:text-[30px] text-[19px]"> Upskilling made  </h3>
-                        <ul className="font-bold lg:md:text-[30px] text-[19px] w-[33%] text-center h-[40px] overflow-hidden bg-white   transition-all relative animate-slide ">
-                            <li className="bg-black mb-1">Practical</li>
-                            <li className="bg-black mb-1">Affordable</li>
-                            <li className="bg-black">Easy</li>
+                        <ul className="font-bold lg:md:text-[30px] text-[19px] w-[23%] text-center h-[40px]   text-red-500  bg-white  overflow-hidden homeSlider ">
+                            <li className="  mb-1">Practical</li>
+                            <li className=" mb-1">Affordable</li>
+                            <li className="mb-1">Easy</li>
                         </ul>
                     </div>
                     <div className="">
                         <p className=" lg:md:text-[16px] text-[13px] text-start  font-bold my-[5px] ">LMS Skills is the one-stop destination for your upskilling journey. Brace yourself to find the best job-ready courses and high-end technologies available in the sector. And if that weren't good enough, get the highest quality course content at the most affordable prices!
                             What are we waiting for ? Let's push Start!</p>
                         <div className=" mt-4">
-                            <Link to={'/courses'} className='  hover:bg-red-400 hover:text-white transition-all ease-linear duration-300 border-[1px] border-red-300 rounded-lg bg-red-500 text-white p-3 '>
+                            <Link to={'/courses'} className='  hover:bg-red-400 hover:text-white transition-all ease-linear duration-300 w-[50px] border-red-300 rounded-lg bg-red-500 text-white p-3 '>
                                 Explore course</Link>
                         </div>
                     </div>
 
                 </div>
-                <div className="  ">
-                    <img src="https://th.bing.com/th/id/OIP.QR44QHixQe6IMFmZxHVhFQHaHa?w=160&h=180&c=7&r=0&o=5&pid=1.7" alt="homeImage" />
+                <div className="   bg-inherits ">
+                    <img src="..\src\assets\images\homePageMainImage.png" alt="homeImage" />
                 </div>
 
             </div>
             {/* water bank */}
-            {/* <div className="h-[24px] bg-blue-300 filter-[1px] rounded-sm">
+            {/* <div className="h-[24px] bg-blue-300 filter-[1px] rounded-sm">https://th.bing.com/th/id/OIP.QR44QHixQe6IMFmZxHVhFQHaHa?w=160&h=180&c=7&r=0&o=5&pid=1.7
                 <h1 className="text-xl text-white text-center">All courses</h1>
             </div> */}
             <div className="  flex  sm:flex-row flex-col gap-2  justify-evenly items-center p-1 flex-wrap ">
@@ -139,7 +111,7 @@ function Home() {
             </div>
 
             {/* course list all  */}
-            <div className='min-h[90vh]  pt-12 pl-20 grid lg:md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 min-h-[81.5vh]  text-white bg-gray-700'>
+            <div className='min-h[90vh]  pt-12 pl-10 pr-10 grid lg:md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 min-h-[81.5vh]  text-white bg-gray-700'>
                 {filterCourse.length > 0 ?
                     filterCourse.map((c) => (
                         <Course key={c._id} {...c} />
