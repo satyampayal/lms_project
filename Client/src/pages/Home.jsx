@@ -35,12 +35,12 @@ function Home() {
     }
   
     useEffect(() => {
-        // if(load==false) {          
+        if(load==false) {          
 
-        //       loadCourses();
+              loadCourses();
              
-        //     }
-            loadCourses();
+      }
+            
          
     
     }, [])
