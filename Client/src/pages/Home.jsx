@@ -55,7 +55,7 @@ function Home() {
                 <div className="flex flex-col justify-between w-[90vw] mx-[20px]">
                     <div className="flex gap-4">
                         <h3 className="font-bold sm:text-[30px] text-[19px]"> Upskilling made  </h3>
-                        <ul className="font-bold lg:md:text-[30px] text-[19px] w-[23%] text-center h-[40px]   text-red-500  bg-white  overflow-hidden homeSlider ">
+                        <ul className="font-bold lg:md:text-[30px] text-[19px] w-[30%] text-center h-[40px]   text-red-500  bg-white  overflow-hidden homeSlider ">
                             <li className="  mb-1">Practical</li>
                             <li className=" mb-1">Affordable</li>
                             <li className="mb-1">Easy</li>
@@ -72,7 +72,7 @@ function Home() {
 
                 </div>
                 <div className="   bg-inherits ">
-                    <img src="..\src\assets\images\homePageMainImage.png" alt="homeImage" />
+                    <img src="https://static.vecteezy.com/system/resources/previews/011/842/286/original/playing-video-game-on-pc-computer-gamer-playing-online-game-on-pc-isolated-gaming-computer-3d-render-png.png" alt="homeImage" />
                 </div>
 
             </div>
