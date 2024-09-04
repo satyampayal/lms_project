@@ -21,7 +21,7 @@ function Checkout() {
     async function load(){
 
         await dispatch(getRazorPayId());
-        await dispatch(purchaseCourseBundle());
+       await dispatch(purchaseCourseBundle());
 
 
     }
