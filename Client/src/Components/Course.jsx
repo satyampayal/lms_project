@@ -11,6 +11,7 @@ function Course(c) {
        text-center font-bold cursor-default
      flex flex-col justify-start 
      hover:scale-[1.05] transition-all duration-200 ease-in 
+     
      '>
         <h1 className='text-green-300'>Category : {c?.category}</h1> 
         {/* now user know what is it category belong */}
